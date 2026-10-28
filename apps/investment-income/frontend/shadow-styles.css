@@ -1,0 +1,72 @@
+@import 'vuetify/dist/vuetify.css';
+
+:host {
+  display: block;
+}
+
+.investment-income-shell {
+  /* The app bar is positioned absolutely; anchor it to the app's own box rather than to the
+     page, or it would pin itself over the Hub's navbar. */
+  position: relative;
+  max-inline-size: 100%;
+}
+
+.investment-income-header .v-toolbar-title__placeholder {
+  white-space: normal;
+}
+
+.investment-income-title {
+  font: inherit;
+  margin: 0;
+}
+
+/* Vuetify generates its colour utilities at runtime into document.head, and those rules do not
+   cross the shadow boundary — only the custom properties they read do. Restated here so primary
+   surfaces inside the app still take the Hub's theme colours rather than falling back to
+   `surface`. */
+.bg-primary {
+  background-color: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+}
+
+.investment-income-cards,
+.investment-income-detail {
+  overflow-y: auto;
+  block-size: 100%;
+}
+
+.investment-income-cards-state,
+.investment-income-detail-state {
+  text-align: center;
+  padding-block: 3rem;
+}
+
+/* A card is a button now, so the user agent's own button styling has to go. */
+.investment-income-card {
+  appearance: none;
+  inline-size: 100%;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+/* An asset name is free text and may arrive as one unbroken string; break it anywhere rather
+   than let it widen the card and push the total out of view. */
+.investment-income-card-name {
+  overflow-wrap: anywhere;
+}
+
+/* Chart.js sizes its canvas to its parent, so the parent needs a definite height; the width is
+   the content area's, full stretch. */
+.investment-income-chart {
+  position: relative;
+  block-size: 280px;
+}
+
+/* In the bar there is no second line to wrap onto: an unbroken name would overflow the toolbar
+   and swallow the back button. Cut it off instead, and show that it was cut. */
+.investment-income-detail-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

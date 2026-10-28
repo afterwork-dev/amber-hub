@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "9290:9290"
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/amber-hub
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET to a long random value}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:9290}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

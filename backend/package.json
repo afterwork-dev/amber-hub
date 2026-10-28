@@ -1,0 +1,35 @@
+{
+  "name": "amber-backend",
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env  src/index.ts",
+    "build": "tsc --noEmit",
+    "start": "tsx --env-file-if-exists=.env src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@amber-hub/shared": "*",
+    "@cfworker/json-schema": "^4.1.1",
+    "@fastify/cors": "^11.3.0",
+    "@modelcontextprotocol/fastify": "^2.0.0",
+    "@modelcontextprotocol/server": "^2.0.0",
+    "bcrypt": "^6.0.0",
+    "fastify": "^5.12.3",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.4.0",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.14.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "mongodb-memory-server": "^11.2.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}

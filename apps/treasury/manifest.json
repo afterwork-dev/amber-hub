@@ -1,0 +1,7 @@
+{
+  "id": "treasury",
+  "displayName": "Treasury",
+  "version": "0.5.0",
+  "frontend": { "entry": "frontend/index.js" },
+  "backend": { "entry": "backend/index.js" }
+}

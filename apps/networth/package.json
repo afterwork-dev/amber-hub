@@ -1,0 +1,29 @@
+{
+  "name": "@amber-apps/networth",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build && APP_ENTRY=backend vite build && cp manifest.json dist/",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@amber-hub/app-sdk": "*",
+    "chart.js": "4.5.1",
+    "vue": "^3.5.13",
+    "vue-chartjs": "5.3.4",
+    "vuetify": "^3.7.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitest/coverage-v8": "^2.1.9",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-vuetify": "^2.0.4",
+    "vitest": "^2.1.5",
+    "vue-tsc": "^2.1.10"
+  }
+}

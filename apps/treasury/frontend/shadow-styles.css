@@ -1,0 +1,72 @@
+@import 'vuetify/dist/vuetify.css';
+
+:host {
+  display: block;
+}
+
+.treasury-shell {
+  /* The app bar is positioned absolutely; anchor it to the app's own box rather than to the
+     page, or it would pin itself over the Hub's navbar. */
+  position: relative;
+  max-inline-size: 100%;
+}
+
+.treasury-header .v-toolbar-title__placeholder {
+  white-space: normal;
+}
+
+.treasury-title {
+  font: inherit;
+  margin: 0;
+}
+
+/* Vuetify generates its colour utilities at runtime into document.head, and those rules do not
+   cross the shadow boundary — only the custom properties they read do. Restated here so primary
+   surfaces inside the app still take the Hub's theme colours rather than falling back to
+   `surface`. */
+.bg-primary {
+  background-color: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+}
+
+.treasury-entries {
+  overflow-y: auto;
+  block-size: 100%;
+}
+
+.treasury-table th {
+  white-space: nowrap;
+}
+
+.treasury-table td {
+  overflow-wrap: break-word;
+}
+
+/* Vuetify stripes at 4% of the border colour, which is not readable as an
+   alternating row on either theme. */
+.treasury-table.v-table--striped-odd > .v-table__wrapper > table > tbody > tr:nth-child(odd) {
+  background-image: linear-gradient(
+    0deg,
+    rgba(var(--v-border-color), 0.09),
+    rgba(var(--v-border-color), 0.09)
+  );
+}
+
+.treasury-entries-state {
+  text-align: center;
+  padding-block: 3rem;
+}
+
+.treasury-entry-emoji {
+  margin-inline-end: 0.5rem;
+}
+
+.treasury-filter.v-btn-group {
+  block-size: auto;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+.treasury-table .v-data-table-rows-no-data {
+  display: none;
+}

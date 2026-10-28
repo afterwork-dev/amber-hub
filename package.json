@@ -1,0 +1,36 @@
+{
+  "name": "amber-hub",
+  "description": "A self-hosted hub for small personal apps, with an MCP endpoint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afterwork-dev/amber-hub.git"
+  },
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared",
+    "tools/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspaces --if-present && npm run sync:apps",
+    "sync:apps": "npm run sync:apps --workspace @amber-hub/app-build",
+    "app:dev": "npm run app:dev --workspace @amber-hub/app-build --",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.31.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.15.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "networth",
+  "displayName": "Net Worth",
+  "version": "0.2.0",
+  "frontend": { "entry": "frontend/index.js" },
+  "backend": { "entry": "backend/index.js" }
+}

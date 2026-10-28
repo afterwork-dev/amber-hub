@@ -1,0 +1,104 @@
+@import 'vuetify/dist/vuetify.css';
+
+:host {
+  display: block;
+}
+
+.networth-shell {
+  /* The app bar is positioned absolutely; anchor it to the app's own box rather than to the
+     page, or it would pin itself over the Hub's navbar. */
+  position: relative;
+  max-inline-size: 100%;
+}
+
+.networth-header .v-toolbar-title__placeholder {
+  white-space: normal;
+}
+
+.networth-title {
+  font: inherit;
+  margin: 0;
+}
+
+/* Vuetify generates its colour utilities at runtime into document.head, and those rules do not
+   cross the shadow boundary — only the custom properties they read do. */
+.bg-primary {
+  background-color: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+}
+
+.bg-error {
+  background-color: rgb(var(--v-theme-error)) !important;
+  color: rgb(var(--v-theme-on-error)) !important;
+}
+
+.text-error {
+  color: rgb(var(--v-theme-error)) !important;
+}
+
+.networth-dashboard {
+  overflow-y: auto;
+  block-size: 100%;
+}
+
+.networth-dashboard-state {
+  text-align: center;
+  padding-block: 3rem;
+}
+
+.networth-chart {
+  position: relative;
+  block-size: 260px;
+}
+
+.networth-chart-wide {
+  block-size: 320px;
+}
+
+.networth-doughnut-total {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.networth-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.networth-legend-swatch {
+  display: inline-block;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 2px;
+  margin-inline-end: 0.25rem;
+}
+
+.networth-table {
+  background: transparent;
+}
+
+.networth-table th {
+  white-space: nowrap;
+}
+
+/* Vuetify stripes at 4% of the border colour, which is not readable as an alternating row. */
+.networth-table.v-table--striped-odd > .v-table__wrapper > table > tbody > tr:nth-child(odd) {
+  background-image: linear-gradient(
+    0deg,
+    rgba(var(--v-border-color), 0.09),
+    rgba(var(--v-border-color), 0.09)
+  );
+}
+
+.networth-table .v-data-table-rows-no-data {
+  display: none;
+}
