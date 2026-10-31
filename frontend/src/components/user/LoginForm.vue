@@ -29,16 +29,11 @@
           {{ error }}
         </p>
 
-        <div class="d-flex justify-end">
+        <div class="d-flex justify-end ga-2">
+          <v-btn variant="tonal" :to="{ name: 'register' }">Create an account</v-btn>
           <v-btn type="submit" color="primary" :loading="loading" :disabled="loading">
             Login
           </v-btn>
-        </div>
-
-        <div class="d-flex justify-center mt-2">
-          <router-link :to="{ name: 'register' }" class="text-primary"
-            >Create an account</router-link
-          >
         </div>
       </form>
     </v-card-text>

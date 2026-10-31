@@ -111,7 +111,7 @@ Installed apps live in `backend/apps-data/`, one subfolder per app named after i
 1. With the backend, frontend, and MongoDB all running, open `http://localhost:5173/register`.
 2. Enter a unique username (3-30 letters/numbers/underscores), a password (8+ characters), and a matching confirmation, then submit. Expect a success message.
 3. Repeat with the same username — expect a "username already taken" message and no new account created.
-4. Open `http://localhost:5173/login` and click the "Create an account" link to reach `/register`. On `/register`, click "Already have an account? Log in" to return to `/login`.
+4. Open `http://localhost:5173/login` and click the "Create an account" button to reach `/register`. On `/register`, click the "Log in instead" button to return to `/login`.
 
 ## Apps
 

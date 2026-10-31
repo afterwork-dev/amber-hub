@@ -30,17 +30,20 @@ describe('RegisterForm navigation', () => {
     setActivePinia(createPinia())
   })
 
-  it('links to the login route without submitting', async () => {
+  it('has a grey button to the login route without submitting', async () => {
     const router = createTestRouter()
     await router.push('/register')
     await router.isReady()
     const wrapper = mount(RegisterForm, { global: { plugins: [vuetify, router] } })
 
-    const link = wrapper.find('a')
-    expect(link.attributes('href')).toBe('/login')
-    expect(link.text()).toBe('Already have an account? Log in')
+    const button = wrapper.findAllComponents({ name: 'VBtn' })[0]!
+    expect(button.props('variant')).toBe('tonal')
+    expect(button.props('color')).toBeUndefined()
+    expect(button.element.tagName).toBe('A')
+    expect(button.attributes('href')).toBe('/login')
+    expect(button.text()).toBe('Log in instead')
 
-    await link.trigger('click')
+    await button.trigger('click')
     await flushPromises()
 
     expect(router.currentRoute.value.name).toBe('login')
