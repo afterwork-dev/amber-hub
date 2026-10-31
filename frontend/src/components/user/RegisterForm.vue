@@ -35,12 +35,7 @@
           />
         </div>
 
-        <p
-          v-if="error && !usernameError"
-          role="alert"
-          class="text-error"
-          data-testid="form-error"
-        >
+        <p v-if="error && !usernameError" role="alert" class="text-error" data-testid="form-error">
           {{ error }}
         </p>
 
@@ -48,6 +43,10 @@
           <v-btn type="submit" color="primary" :loading="loading" :disabled="loading">
             Register
           </v-btn>
+        </div>
+
+        <div class="d-flex justify-center mt-2">
+          <v-btn variant="text" :to="{ name: 'login' }">Already have an account? Log in</v-btn>
         </div>
       </form>
     </v-card-text>
