@@ -46,7 +46,9 @@
         </div>
 
         <div class="d-flex justify-center mt-2">
-          <v-btn variant="text" :to="{ name: 'login' }">Already have an account? Log in</v-btn>
+          <router-link :to="{ name: 'login' }" class="text-primary"
+            >Already have an account? Log in</router-link
+          >
         </div>
       </form>
     </v-card-text>

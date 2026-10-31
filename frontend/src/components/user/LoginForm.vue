@@ -36,7 +36,9 @@
         </div>
 
         <div class="d-flex justify-center mt-2">
-          <v-btn variant="text" :to="{ name: 'register' }">Create an account</v-btn>
+          <router-link :to="{ name: 'register' }" class="text-primary"
+            >Create an account</router-link
+          >
         </div>
       </form>
     </v-card-text>
