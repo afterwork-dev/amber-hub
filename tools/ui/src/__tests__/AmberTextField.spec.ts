@@ -50,6 +50,23 @@ describe('AmberTextField', () => {
     expect(none.find('input').attributes('aria-invalid')).toBeUndefined()
   })
 
+  it('emits the typed string for number and date types', async () => {
+    const number = mount(AmberTextField, { props: { label: 'Amount', type: 'number' } })
+    await number.find('input').setValue('42')
+    expect(number.emitted('update:modelValue')?.at(-1)).toEqual(['42'])
+
+    const date = mount(AmberTextField, { props: { label: 'Day', type: 'date' } })
+    await date.find('input').setValue('2026-01-31')
+    expect(date.emitted('update:modelValue')?.at(-1)).toEqual(['2026-01-31'])
+  })
+
+  it('treats an empty error as no error', () => {
+    const wrapper = mount(AmberTextField, { props: { label: 'Email', id: 'x', error: '' } })
+    expect(wrapper.find('#x-error').exists()).toBe(false)
+    expect(wrapper.find('input').attributes('aria-invalid')).toBeUndefined()
+    expect(wrapper.classes()).not.toContain('amber-text-field--error')
+  })
+
   it('disables the input and marks the root', () => {
     const wrapper = mount(AmberTextField, { props: { label: 'Name', disabled: true } })
     expect(wrapper.find('input').attributes('disabled')).toBeDefined()

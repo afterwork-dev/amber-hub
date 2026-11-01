@@ -73,6 +73,13 @@ describe('AmberSelect', () => {
     expect(none.find('select').attributes('aria-invalid')).toBeUndefined()
   })
 
+  it('treats an empty error as no error', () => {
+    const wrapper = mount(AmberSelect, { props: { items, label: 'Pick', id: 'x', error: '' } })
+    expect(wrapper.find('#x-error').exists()).toBe(false)
+    expect(wrapper.find('select').attributes('aria-invalid')).toBeUndefined()
+    expect(wrapper.classes()).not.toContain('amber-select--error')
+  })
+
   it('disables the select and marks the root', () => {
     const wrapper = mount(AmberSelect, { props: { items, label: 'Pick', disabled: true } })
     expect(wrapper.find('select').attributes('disabled')).toBeDefined()
