@@ -206,7 +206,10 @@ npm run build   # builds/type-checks all workspaces
 npm run test    # runs all workspace test suites
 npm run lint    # lints the whole repo
 npm run format  # formats the whole repo with Prettier
+npm run gallery  # starts the AmberUI gallery on http://localhost:5180
 ```
+
+The gallery has a Playwright smoke test that opens every gallery page and fails on console errors, failed requests or requests leaving localhost. It is not in CI. Install its browser once with `npx playwright install chromium`, then run `npm run test:e2e --workspace @amber-hub/ui-gallery`.
 
 ## Project structure
 
@@ -217,7 +220,8 @@ shared/          # Types shared by both (ApiResponse<T>, error codes)
 apps/            # In-repo Apps, one workspace each (see developer.md)
 tools/app-sdk/   # The App-Hub contract: types + callAppApi, the only Hub package an App may import
 tools/app-build/ # Build tooling: validates each App's package and syncs it into app storage
-tools/ui/        # AmberUI design system (@amber-hub/ui): design tokens for now; see docs/amberui.md
+tools/ui/        # AmberUI design system (@amber-hub/ui): design tokens and Lucide icons for now; see docs/amberui.md
+tools/ui-gallery/ # AmberUI gallery (dev only, not in the image): npm run gallery
 docker/          # nginx config template + entrypoint script for the single-container build
 Dockerfile       # multi-stage build: builds all workspaces, then assembles the runtime image
 ```

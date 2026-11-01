@@ -9,15 +9,26 @@
       "types": "./src/tokens.ts",
       "import": "./src/tokens.ts"
     },
-    "./tokens.css": "./src/tokens.css"
+    "./tokens.css": "./src/tokens.css",
+    "./icons": {
+      "types": "./src/icons.ts",
+      "import": "./src/icons.ts"
+    }
   },
   "scripts": {
     "build": "tsc --noEmit",
     "test": "vitest run"
   },
+  "dependencies": {
+    "@lucide/vue": "^1.66.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
   "devDependencies": {
     "@types/node": "^20.14.0",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.5"
+    "vitest": "^2.1.5",
+    "vue": "^3.5.13"
   }
 }
