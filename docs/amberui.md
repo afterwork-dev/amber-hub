@@ -29,27 +29,27 @@ never raw values.
 There are eight steps, dark to light. Every surface in the product maps to one of them.
 The deck's principles page says "twelve"; the eight below are the real scale.
 
-| Token | Value | Use |
-|---|---|---|
-| `--amber-canvas` | `#0A0A0A` | page background (E0) |
-| `--amber-base` | `#111111` | content panels on the canvas |
-| `--amber-card` | `#1D1D1D` | cards, inputs, top bar, drawer (E1) |
-| `--amber-raised` | `#2F2F2F` | raised controls, dialogs, hairlines (E2/E3) |
-| `--amber-border` | `#454545` | control borders, unchecked toggles |
-| `--amber-text-muted` | `#6B6B6B` | disabled text, placeholders, section labels |
-| `--amber-text-secondary` | `#C6C6C6` | body copy, inactive navigation |
-| `--amber-text-primary` | `#F5F5F3` | headings, values, active text |
+| Token                    | Value     | Use                                         |
+| ------------------------ | --------- | ------------------------------------------- |
+| `--amber-canvas`         | `#0A0A0A` | page background (E0)                        |
+| `--amber-base`           | `#111111` | content panels on the canvas                |
+| `--amber-card`           | `#1D1D1D` | cards, inputs, top bar, drawer (E1)         |
+| `--amber-raised`         | `#2F2F2F` | raised controls, dialogs, hairlines (E2/E3) |
+| `--amber-border`         | `#454545` | control borders, unchecked toggles          |
+| `--amber-text-muted`     | `#6B6B6B` | disabled text, placeholders, section labels |
+| `--amber-text-secondary` | `#C6C6C6` | body copy, inactive navigation              |
+| `--amber-text-primary`   | `#F5F5F3` | headings, values, active text               |
 
 ### 2.2 Accent
 
-| Token | Value | Use |
-|---|---|---|
-| `--amber-accent-600` | `#E67A00` | pressed state of accent controls |
-| `--amber-accent-500` | `#FF8C00` | **the** accent: primary buttons, checked toggles, focus |
-| `--amber-accent-400` | `#FFA733` | accent text on tinted fills; hover of accent controls |
-| `--amber-accent-300` | `#FFC066` | rare highlights |
-| `--amber-on-accent` | `#111111` | text and icons on accent-500 [measured] |
-| `--amber-accent-tint` | `#3C2C18` | "selected" fill: active nav item, badges [measured] |
+| Token                 | Value     | Use                                                     |
+| --------------------- | --------- | ------------------------------------------------------- |
+| `--amber-accent-600`  | `#E67A00` | pressed state of accent controls                        |
+| `--amber-accent-500`  | `#FF8C00` | **the** accent: primary buttons, checked toggles, focus |
+| `--amber-accent-400`  | `#FFA733` | accent text on tinted fills; hover of accent controls   |
+| `--amber-accent-300`  | `#FFC066` | rare highlights                                         |
+| `--amber-on-accent`   | `#111111` | text and icons on accent-500 [measured]                 |
+| `--amber-accent-tint` | `#3C2C18` | "selected" fill: active nav item, badges [measured]     |
 
 Use the accent for primary buttons and calls to action, and for active, selected and focus
 states. Use it sparingly, and never as a large surface fill.
@@ -59,25 +59,25 @@ states. Use it sparingly, and never as a large surface fill.
 These are the only hues besides orange. They're reserved for feedback and never used for
 surfaces or branding.
 
-| Token | Value | Use |
-|---|---|---|
+| Token             | Value     | Use                             |
+| ----------------- | --------- | ------------------------------- |
 | `--amber-success` | `#3DDC84` | confirmations, completed states |
-| `--amber-warning` | `#F5C518` | caution, approaching limits |
-| `--amber-error` | `#FF5C5C` | failures, destructive actions |
-| `--amber-info` | `#C6C6C6` | neutral, non-urgent messages |
+| `--amber-warning` | `#F5C518` | caution, approaching limits     |
+| `--amber-error`   | `#FF5C5C` | failures, destructive actions   |
+| `--amber-info`    | `#C6C6C6` | neutral, non-urgent messages    |
 
 ### 2.4 Typography
 
 The only family is **Inter**, self-hosted. Never load it from a third-party CDN.
 
-| Token prefix | Weight | Size | Line height | Use |
-|---|---|---|---|---|
-| `--amber-type-display-*` | 800 | 48px | 56px | page hero, one per screen at most |
-| `--amber-type-heading-*` | 700 | 36px | 44px | page titles |
-| `--amber-type-subheading-*` | 600 | 22px | 28px | section and card titles |
-| `--amber-type-body-*` | 400 | 16px | 24px | descriptions, table cells, body copy |
-| `--amber-type-caption-*` | 500 | 13px | 18px | timestamps, labels, metadata |
-| `--amber-type-overline-*` | 500 | 13px | 18px | section labels: uppercase, `letter-spacing: 0.12em` [derived] |
+| Token prefix                | Weight | Size | Line height | Use                                                           |
+| --------------------------- | ------ | ---- | ----------- | ------------------------------------------------------------- |
+| `--amber-type-display-*`    | 800    | 48px | 56px        | page hero, one per screen at most                             |
+| `--amber-type-heading-*`    | 700    | 36px | 44px        | page titles                                                   |
+| `--amber-type-subheading-*` | 600    | 22px | 28px        | section and card titles                                       |
+| `--amber-type-body-*`       | 400    | 16px | 24px        | descriptions, table cells, body copy                          |
+| `--amber-type-caption-*`    | 500    | 13px | 18px        | timestamps, labels, metadata                                  |
+| `--amber-type-overline-*`   | 500    | 13px | 18px        | section labels: uppercase, `letter-spacing: 0.12em` [derived] |
 
 Each style exposes `-size`, `-weight` and `-line-height`. Buttons and nav items use body
 size at weight 600.
@@ -86,28 +86,28 @@ size at weight 600.
 
 There is a 4px base scale. Use only these values for padding, gaps and margins.
 
-| Token | Value |
-|---|---|
-| `--amber-space-1` | 4px |
-| `--amber-space-2` | 8px |
-| `--amber-space-4` | 16px |
-| `--amber-space-6` | 24px |
-| `--amber-space-8` | 32px |
-| `--amber-space-12` | 48px |
+| Token              | Value |
+| ------------------ | ----- |
+| `--amber-space-1`  | 4px   |
+| `--amber-space-2`  | 8px   |
+| `--amber-space-4`  | 16px  |
+| `--amber-space-6`  | 24px  |
+| `--amber-space-8`  | 32px  |
+| `--amber-space-12` | 48px  |
 
 The grid has 12 columns with a 24px gutter. Page margins are 80px on desktop (≥1280px),
 32px on tablet (768–1279px) and 16px on phone (<768px).
 
 ### 2.6 Corner radius
 
-| Token | Value | Use |
-|---|---|---|
-| `--amber-radius-sm` | 8px | small controls: checkbox (6px, see below), nav items, chips |
-| `--amber-radius-md` | 14px | inputs, selects |
-| `--amber-radius-lg` | 20px | cards, panels |
-| `--amber-radius-xl` | 28px | large panels, top bar, drawer, dialogs |
-| `--amber-radius-2xl` | 36px | hero tiles, app icons |
-| `--amber-radius-full` | 9999px | buttons, pills, avatars, switches, radios |
+| Token                 | Value  | Use                                                         |
+| --------------------- | ------ | ----------------------------------------------------------- |
+| `--amber-radius-sm`   | 8px    | small controls: checkbox (6px, see below), nav items, chips |
+| `--amber-radius-md`   | 14px   | inputs, selects                                             |
+| `--amber-radius-lg`   | 20px   | cards, panels                                               |
+| `--amber-radius-xl`   | 28px   | large panels, top bar, drawer, dialogs                      |
+| `--amber-radius-2xl`  | 36px   | hero tiles, app icons                                       |
+| `--amber-radius-full` | 9999px | buttons, pills, avatars, switches, radios                   |
 
 Radius scales with control size. The checkbox (20px) uses 6px; that's the only exception.
 
@@ -115,12 +115,12 @@ Radius scales with control size. The checkbox (20px) uses 6px; that's the only e
 
 Each level pairs a surface step with a shadow.
 
-| Token | Shadow | Surface | Use |
-|---|---|---|---|
-| `--amber-elevation-0` | none | canvas / base | page, content panels |
-| `--amber-elevation-1` | `0 6px 16px rgba(0,0,0,.35)` | card | cards, top bar, drawer |
-| `--amber-elevation-2` | `0 14px 30px rgba(0,0,0,.45)` | raised | menus, popovers, toasts |
-| `--amber-elevation-3` | `0 26px 54px rgba(0,0,0,.55)` | raised | dialogs |
+| Token                 | Shadow                        | Surface       | Use                     |
+| --------------------- | ----------------------------- | ------------- | ----------------------- |
+| `--amber-elevation-0` | none                          | canvas / base | page, content panels    |
+| `--amber-elevation-1` | `0 6px 16px rgba(0,0,0,.35)`  | card          | cards, top bar, drawer  |
+| `--amber-elevation-2` | `0 14px 30px rgba(0,0,0,.45)` | raised        | menus, popovers, toasts |
+| `--amber-elevation-3` | `0 26px 54px rgba(0,0,0,.55)` | raised        | dialogs                 |
 
 ### 2.8 Focus
 
@@ -131,11 +131,11 @@ replacement.
 
 ### 2.9 Motion
 
-| Token | Value | Use |
-|---|---|---|
-| `--amber-duration-fast` | 120ms | hover, press, toggle |
-| `--amber-duration-normal` | 200ms | dialogs, drawers, toasts |
-| `--amber-easing` | `cubic-bezier(.2,0,0,1)` | everything |
+| Token                     | Value                    | Use                      |
+| ------------------------- | ------------------------ | ------------------------ |
+| `--amber-duration-fast`   | 120ms                    | hover, press, toggle     |
+| `--amber-duration-normal` | 200ms                    | dialogs, drawers, toasts |
+| `--amber-easing`          | `cubic-bezier(.2,0,0,1)` | everything               |
 
 Under `prefers-reduced-motion: reduce`, durations are 0ms.
 
@@ -155,12 +155,12 @@ area. Every component is reachable and usable from the keyboard.
 The button is a pill (`radius-full`), 48px tall, with 24px inline padding and body text at
 weight 600. An optional leading or trailing icon sits 8px from the label.
 
-| Variant | Fill | Text | Notes |
-|---|---|---|---|
-| primary | accent-500 | on-accent | at most one per screen or dialog; hover accent-400, pressed accent-600 |
-| secondary | one step above its surface (raised on canvas, base or card; border on raised) | text-primary | 1px border one step above the fill |
-| ghost | none | accent-500 | hover: accent-tint fill |
-| danger | error | on-accent | destructive confirmations only |
+| Variant   | Fill                                                                          | Text         | Notes                                                                  |
+| --------- | ----------------------------------------------------------------------------- | ------------ | ---------------------------------------------------------------------- |
+| primary   | accent-500                                                                    | on-accent    | at most one per screen or dialog; hover accent-400, pressed accent-600 |
+| secondary | one step above its surface (raised on canvas, base or card; border on raised) | text-primary | 1px border one step above the fill                                     |
+| ghost     | none                                                                          | accent-500   | hover: accent-tint fill                                                |
+| danger    | error                                                                         | on-accent    | destructive confirmations only                                         |
 
 - **Disabled:** card fill, text-muted, no border, `cursor: not-allowed`, not focusable via
   the `disabled` attribute.
@@ -192,11 +192,15 @@ raised border, body text in text-primary and a text-muted placeholder.
 - **Field:** a label above the input (caption, text-secondary, 8px gap) and an
   optional hint below (caption, text-muted). A label is required, either visible or as
   `aria-label`.
+- **Leading icon and focus over error** [derived]: a leading icon is 20px, text-muted and
+  sits 16px from the start edge, with the text starting 8px after it. While focused, the
+  focus styling (accent-500 border plus ring) wins over the error border.
 
 ### 4.3 Select
 
 The select looks the same as the text input, with a trailing chevron-down icon in
 text-muted. Version 1 wraps a native `<select>` for accessibility and mobile behaviour.
+The chevron is 20px and sits 16px from the end edge [derived].
 
 ### 4.4 Switch, checkbox, radio
 
