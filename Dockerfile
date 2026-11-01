@@ -12,6 +12,7 @@ COPY shared/package.json shared/package.json
 COPY tools/app-sdk/package.json tools/app-sdk/package.json
 COPY tools/app-build/package.json tools/app-build/package.json
 COPY tools/ui/package.json tools/ui/package.json
+COPY tools/ui-gallery/package.json tools/ui-gallery/package.json
 COPY apps/treasury/package.json apps/treasury/package.json
 COPY apps/investment-income/package.json apps/investment-income/package.json
 COPY apps/networth/package.json apps/networth/package.json
