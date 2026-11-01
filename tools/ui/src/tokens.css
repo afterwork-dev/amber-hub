@@ -1,0 +1,67 @@
+/* prettier-ignore */
+:root, :host {
+  --amber-canvas: #0A0A0A;
+  --amber-base: #111111;
+  --amber-card: #1D1D1D;
+  --amber-raised: #2F2F2F;
+  --amber-border: #454545;
+  --amber-text-muted: #6B6B6B;
+  --amber-text-secondary: #C6C6C6;
+  --amber-text-primary: #F5F5F3;
+  --amber-accent-600: #E67A00;
+  --amber-accent-500: #FF8C00;
+  --amber-accent-400: #FFA733;
+  --amber-accent-300: #FFC066;
+  --amber-on-accent: #111111;
+  --amber-accent-tint: #3C2C18;
+  --amber-success: #3DDC84;
+  --amber-warning: #F5C518;
+  --amber-error: #FF5C5C;
+  --amber-info: #C6C6C6;
+  --amber-type-display-size: 48px;
+  --amber-type-display-weight: 800;
+  --amber-type-display-line-height: 56px;
+  --amber-type-heading-size: 36px;
+  --amber-type-heading-weight: 700;
+  --amber-type-heading-line-height: 44px;
+  --amber-type-subheading-size: 22px;
+  --amber-type-subheading-weight: 600;
+  --amber-type-subheading-line-height: 28px;
+  --amber-type-body-size: 16px;
+  --amber-type-body-weight: 400;
+  --amber-type-body-line-height: 24px;
+  --amber-type-caption-size: 13px;
+  --amber-type-caption-weight: 500;
+  --amber-type-caption-line-height: 18px;
+  --amber-type-overline-size: 13px;
+  --amber-type-overline-weight: 500;
+  --amber-type-overline-line-height: 18px;
+  --amber-space-1: 4px;
+  --amber-space-2: 8px;
+  --amber-space-4: 16px;
+  --amber-space-6: 24px;
+  --amber-space-8: 32px;
+  --amber-space-12: 48px;
+  --amber-radius-sm: 8px;
+  --amber-radius-md: 14px;
+  --amber-radius-lg: 20px;
+  --amber-radius-xl: 28px;
+  --amber-radius-2xl: 36px;
+  --amber-radius-full: 9999px;
+  --amber-elevation-0: none;
+  --amber-elevation-1: 0 6px 16px rgba(0,0,0,.35);
+  --amber-elevation-2: 0 14px 30px rgba(0,0,0,.45);
+  --amber-elevation-3: 0 26px 54px rgba(0,0,0,.55);
+  --amber-focus-ring: 0 0 0 3px rgba(255,140,0,.18);
+  --amber-duration-fast: 120ms;
+  --amber-duration-normal: 200ms;
+  --amber-easing: cubic-bezier(.2,0,0,1);
+}
+
+/* prettier-ignore */
+@media (prefers-reduced-motion: reduce) {
+  :root, :host {
+    --amber-duration-fast: 0ms;
+    --amber-duration-normal: 0ms;
+  }
+}

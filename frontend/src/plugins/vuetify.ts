@@ -1,6 +1,7 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+import { tokens } from '@amber-hub/ui/tokens'
 
 export const vuetify = createVuetify({
   theme: {
@@ -9,8 +10,14 @@ export const vuetify = createVuetify({
       dark: {
         dark: true,
         colors: {
-          primary: '#FF8C00',
-          'on-primary': '#1A1A1A',
+          background: tokens.canvas,
+          surface: tokens.card,
+          primary: tokens['accent-500'],
+          'on-primary': tokens['on-accent'],
+          error: tokens.error,
+          warning: tokens.warning,
+          success: tokens.success,
+          info: tokens.info,
         },
       },
     },
