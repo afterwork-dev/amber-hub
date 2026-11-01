@@ -87,7 +87,7 @@ describe('AmberButton clicks', () => {
     const wrapper = mount(AmberButton, { props: { href: '/x' } })
     let prevented: boolean | undefined
     // Runs after the component's handler. Cancels the click so jsdom doesn't try to navigate.
-    wrapper.element.addEventListener('click', (event) => {
+    wrapper.element.addEventListener('click', (event: Event) => {
       prevented = event.defaultPrevented
       event.preventDefault()
     })

@@ -84,7 +84,7 @@ const surfaces = [
         <td v-for="state in iconStates" :key="state.id">
           <AmberIconButton
             :icon="Bell"
-            aria-label="Notifications"
+            ariaLabel="Notifications"
             :dot="dot"
             :class="state.class"
             :disabled="state.id === 'disabled'"
