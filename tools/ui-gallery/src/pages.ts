@@ -19,4 +19,5 @@ export const pages: readonly GalleryPage[] = [
   { group: 'Foundations', title: 'Focus', path: '/foundations/focus' },
   { group: 'Foundations', title: 'Motion', path: '/foundations/motion' },
   { group: 'Foundations', title: 'Icons', path: '/foundations/icons' },
+  { group: 'Components', title: 'Buttons', path: '/components/buttons' },
 ]

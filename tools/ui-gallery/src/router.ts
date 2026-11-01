@@ -10,6 +10,7 @@ const components: Record<string, () => Promise<RouteComponent>> = {
   '/foundations/focus': () => import('./pages/FocusPage.vue'),
   '/foundations/motion': () => import('./pages/MotionPage.vue'),
   '/foundations/icons': () => import('./pages/IconsPage.vue'),
+  '/components/buttons': () => import('./pages/ButtonsPage.vue'),
 }
 
 const router = createRouter({
