@@ -20,4 +20,5 @@ export const pages: readonly GalleryPage[] = [
   { group: 'Foundations', title: 'Motion', path: '/foundations/motion' },
   { group: 'Foundations', title: 'Icons', path: '/foundations/icons' },
   { group: 'Components', title: 'Buttons', path: '/components/buttons' },
+  { group: 'Components', title: 'Text input & select', path: '/components/text-input' },
 ]
