@@ -449,7 +449,7 @@ Skeletons hold the place of content during a first load, so the layout doesn't j
   - `@amber-hub/ui`: the components (`AmberButton`, `AmberTextField`, …), fully typed
   - `@amber-hub/ui/tokens`: the same token values as a typed object, for charts and other
     places CSS can't reach. A test fails if it drifts from `tokens.css`.
-  - `@amber-hub/ui/icons`: the Lucide icons (`lucide-vue-next`), re-exported
+  - `@amber-hub/ui/icons`: the Lucide icons (`@lucide/vue`), re-exported
 - **The Hub** loads `tokens.css` and the Inter font at document level. Fonts must load at
   document level because `@font-face` inside a shadow root is not applied. Custom
   properties inherit through shadow boundaries, so apps receive the tokens automatically.

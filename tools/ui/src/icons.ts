@@ -1,1 +1,1 @@
-export * from 'lucide-vue-next'
+export * from '@lucide/vue'
