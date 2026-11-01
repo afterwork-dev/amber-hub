@@ -87,7 +87,8 @@ describe('foundations', () => {
   })
 
   it('flags as derived exactly what the doc marks [derived], including the overline letter-spacing', () => {
-    const markers = doc.match(/\[derived\]/g) ?? []
+    const foundationsDoc = doc.slice(0, doc.indexOf('## 4. Components'))
+    const markers = foundationsDoc.match(/\[derived\]/g) ?? []
     const derived = allObjects.filter((object) => object.derived === true)
     expect(derived).toHaveLength(markers.length)
     const overline = typography.styles.find((style) => style.name === 'overline')!
