@@ -24,8 +24,10 @@ describe('page registry', () => {
     ])
   })
 
-  it('has no Components or Layouts pages yet', () => {
-    expect(pages.filter((page) => page.group === 'Components')).toEqual([])
+  it('has only the Buttons Components page and no Layouts pages yet', () => {
+    expect(pages.filter((page) => page.group === 'Components')).toEqual([
+      { group: 'Components', title: 'Buttons', path: '/components/buttons' },
+    ])
     expect(pages.filter((page) => page.group === 'Layouts')).toEqual([])
   })
 })

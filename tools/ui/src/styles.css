@@ -1,0 +1,207 @@
+/*
+ * AmberUI component styles (docs/amberui.md section 7). Plain global CSS, no scoped or runtime
+ * styles, so apps can inline this file into a shadow root. Every class starts with amber-.
+ *
+ * The amber-is-hover, amber-is-focus and amber-is-pressed classes exist for the gallery: they
+ * force a state for preview and get exactly the same styles as :hover, :focus-visible and :active.
+ */
+
+.amber-button {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--amber-space-2);
+  height: var(--amber-space-12);
+  padding: 0 var(--amber-space-6);
+  border: 1px solid transparent;
+  border-radius: var(--amber-radius-full);
+  background: none;
+  color: var(--amber-text-primary);
+  font-family: inherit;
+  font-size: var(--amber-type-body-size);
+  font-weight: 600;
+  line-height: var(--amber-type-body-line-height);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--amber-duration-fast) var(--amber-easing),
+    border-color var(--amber-duration-fast) var(--amber-easing),
+    color var(--amber-duration-fast) var(--amber-easing),
+    box-shadow var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-button--sm {
+  height: 36px;
+  padding: 0 var(--amber-space-4);
+  font-size: var(--amber-type-caption-size);
+  line-height: var(--amber-type-caption-line-height);
+}
+
+.amber-button__icon {
+  flex: none;
+}
+
+/* primary */
+.amber-button--primary {
+  background: var(--amber-accent-500);
+  color: var(--amber-on-accent);
+}
+
+.amber-button--primary:is(:hover, .amber-is-hover) {
+  background: var(--amber-accent-400);
+}
+
+.amber-button--primary:is(:active, .amber-is-pressed) {
+  background: var(--amber-accent-600);
+}
+
+/* secondary */
+.amber-button--secondary {
+  border-color: var(--amber-border);
+  background: var(--amber-raised);
+  color: var(--amber-text-primary);
+}
+
+.amber-button--secondary:is(:hover, .amber-is-hover) {
+  background: var(--amber-border);
+}
+
+.amber-button--secondary:is(:active, .amber-is-pressed) {
+  background: var(--amber-card);
+}
+
+.amber-button--secondary.amber-button--on-raised {
+  border-color: var(--amber-text-muted);
+  background: var(--amber-border);
+}
+
+.amber-button--secondary.amber-button--on-raised:is(:hover, .amber-is-hover) {
+  background: var(--amber-text-muted);
+}
+
+.amber-button--secondary.amber-button--on-raised:is(:active, .amber-is-pressed) {
+  background: var(--amber-raised);
+}
+
+/* ghost */
+.amber-button--ghost {
+  color: var(--amber-accent-500);
+}
+
+.amber-button--ghost:is(:hover, .amber-is-hover) {
+  background: var(--amber-accent-tint);
+}
+
+.amber-button--ghost:is(:active, .amber-is-pressed) {
+  background: var(--amber-accent-tint);
+  color: var(--amber-accent-600);
+}
+
+/* danger */
+.amber-button--danger {
+  background: var(--amber-error);
+  color: var(--amber-on-accent);
+}
+
+/* focus */
+.amber-button:is(:focus-visible, .amber-is-focus),
+.amber-icon-button:is(:focus-visible, .amber-is-focus) {
+  outline: 1px solid var(--amber-accent-500);
+  box-shadow: var(--amber-focus-ring);
+}
+
+/* disabled: wins over every variant */
+.amber-button.amber-button:is(:disabled, .amber-button--disabled) {
+  border-color: transparent;
+  background: var(--amber-card);
+  color: var(--amber-text-muted);
+  cursor: not-allowed;
+}
+
+/* loading */
+.amber-button--loading > :not(.amber-button__spinner) {
+  visibility: hidden;
+}
+
+.amber-button__spinner {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  border: 2px solid var(--amber-raised);
+  border-top-color: var(--amber-accent-500);
+  border-radius: var(--amber-radius-full);
+  animation: amber-spin 800ms linear infinite;
+}
+
+.amber-button--sm .amber-button__spinner {
+  width: 16px;
+  height: 16px;
+}
+
+.amber-button--primary .amber-button__spinner {
+  border-color: var(--amber-accent-600);
+  border-top-color: var(--amber-on-accent);
+}
+
+@keyframes amber-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amber-button__spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+/* icon button */
+.amber-icon-button {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--amber-space-12);
+  height: var(--amber-space-12);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-raised);
+  color: var(--amber-text-primary);
+  cursor: pointer;
+  transition:
+    background-color var(--amber-duration-fast) var(--amber-easing),
+    border-color var(--amber-duration-fast) var(--amber-easing),
+    color var(--amber-duration-fast) var(--amber-easing),
+    box-shadow var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-icon-button:is(:hover, .amber-is-hover) {
+  background: var(--amber-border);
+}
+
+.amber-icon-button:is(:active, .amber-is-pressed) {
+  background: var(--amber-card);
+}
+
+.amber-icon-button.amber-icon-button:disabled {
+  background: var(--amber-card);
+  color: var(--amber-text-muted);
+  cursor: not-allowed;
+}
+
+.amber-icon-button__dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-accent-500);
+}

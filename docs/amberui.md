@@ -168,9 +168,17 @@ weight 600. An optional leading or trailing icon sits 8px from the label.
   `aria-busy="true"`.
 - **Size `sm`:** 36px tall, 16px inline padding, caption-size text. Use it in
   dense rows only.
+- **Hover and pressed beyond the table** [derived]:
+  - secondary hover moves the fill one step up (border, or text-muted on raised), and
+    pressed moves it one step down (card, or raised on raised);
+  - ghost pressed keeps the accent-tint fill with accent-600 text;
+  - danger has no hover or pressed change, because no token exists for one.
+- **Spinner colours in a button** [derived]: the in-button spinner (4.11) uses the raised
+  track and accent-500 arc, and in the primary button the accent-600 track and on-accent arc.
 
 **Icon button:** circular, 48px, with a raised fill and a 20px icon. A notification dot
-(8px, accent-500) sits at the top right when flagged. It requires `aria-label`.
+(8px, accent-500) sits at the top right when flagged. It requires `aria-label`. Its hover
+(border fill) and pressed (card fill) follow the secondary button [derived].
 
 ### 4.2 Text input
 

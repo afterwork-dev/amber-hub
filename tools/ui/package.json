@@ -5,6 +5,10 @@
   "license": "MIT",
   "type": "module",
   "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
     "./tokens": {
       "types": "./src/tokens.ts",
       "import": "./src/tokens.ts"
@@ -13,11 +17,12 @@
     "./icons": {
       "types": "./src/icons.ts",
       "import": "./src/icons.ts"
-    }
+    },
+    "./styles.css": "./src/styles.css"
   },
   "scripts": {
-    "build": "tsc --noEmit",
-    "test": "vitest run"
+    "build": "vue-tsc --noEmit",
+    "test": "NODE_OPTIONS=--no-experimental-webstorage vitest run"
   },
   "dependencies": {
     "@lucide/vue": "^1.66.0"
@@ -27,8 +32,12 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^25.0.1",
     "typescript": "^5.6.3",
     "vitest": "^2.1.5",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.1.10"
   }
 }
