@@ -28,14 +28,16 @@ describe('LoginPage', () => {
     }
   })
 
-  it('shows exactly one primary action: the Login button, positioned bottom-right of the card', () => {
+  it('shows the Login button bottom-right of the card with a secondary "Create an account" button to its left', () => {
     const wrapper = mount(LoginPage, { global: { plugins: [vuetify] } })
 
     const buttons = wrapper.findAllComponents({ name: 'VBtn' })
-    expect(buttons).toHaveLength(1)
-    expect(buttons[0]?.text()).toContain('Login')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]?.text()).toBe('Create an account')
+    expect(buttons[1]?.text()).toContain('Login')
 
-    const buttonWrapper = buttons[0]?.element.closest('.d-flex')
+    const buttonWrapper = buttons[1]?.element.closest('.d-flex')
+    expect(buttons[0]?.element.closest('.d-flex')).toBe(buttonWrapper)
     expect(buttonWrapper?.classList.contains('justify-end')).toBe(true)
   })
 })

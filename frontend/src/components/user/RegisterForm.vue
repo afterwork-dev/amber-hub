@@ -35,16 +35,12 @@
           />
         </div>
 
-        <p
-          v-if="error && !usernameError"
-          role="alert"
-          class="text-error"
-          data-testid="form-error"
-        >
+        <p v-if="error && !usernameError" role="alert" class="text-error" data-testid="form-error">
           {{ error }}
         </p>
 
-        <div class="d-flex justify-end">
+        <div class="d-flex justify-end ga-2">
+          <v-btn variant="tonal" :to="{ name: 'login' }">Log in instead</v-btn>
           <v-btn type="submit" color="primary" :loading="loading" :disabled="loading">
             Register
           </v-btn>

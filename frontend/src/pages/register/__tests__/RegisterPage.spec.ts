@@ -49,14 +49,16 @@ describe('RegisterPage', () => {
     }
   })
 
-  it('shows exactly one primary action: the Register button, positioned bottom-right of the card', () => {
+  it('shows the Register button bottom-right of the card with a secondary "Log in instead" button to its left', () => {
     const wrapper = mount(RegisterPage, { global: { plugins: [vuetify, createTestRouter()] } })
 
     const buttons = wrapper.findAllComponents({ name: 'VBtn' })
-    expect(buttons).toHaveLength(1)
-    expect(buttons[0]?.text()).toContain('Register')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0]?.text()).toBe('Log in instead')
+    expect(buttons[1]?.text()).toContain('Register')
 
-    const buttonWrapper = buttons[0]?.element.closest('.d-flex')
+    const buttonWrapper = buttons[1]?.element.closest('.d-flex')
+    expect(buttons[0]?.element.closest('.d-flex')).toBe(buttonWrapper)
     expect(buttonWrapper?.classList.contains('justify-end')).toBe(true)
   })
 })

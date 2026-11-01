@@ -62,7 +62,9 @@ describe('LoginForm', () => {
     await wrapper.find('form').trigger('submit.prevent')
     await wrapper.vm.$nextTick()
 
-    const button = wrapper.findComponent({ name: 'VBtn' })
+    const button = wrapper
+      .findAllComponents({ name: 'VBtn' })
+      .find((b) => b.attributes('type') === 'submit')!
     expect(button.props('disabled')).toBe(true)
   })
 
