@@ -18,9 +18,7 @@ const textStates = [
   { id: 'hint', label: 'With hint' },
   { id: 'icon', label: 'With icon' },
 ] as const
-const selectStates = textStates.map((state) =>
-  state.id === 'icon' ? { ...state, label: 'With icon (chevron)' } : state,
-)
+const selectStates = textStates.filter((state) => state.id !== 'icon')
 
 const textValues = ref<Record<string, string>>({
   default: '',
@@ -38,7 +36,6 @@ const selectValues = ref<Record<string, string | undefined>>({
   disabled: 'amber',
   error: undefined,
   hint: undefined,
-  icon: undefined,
 })
 </script>
 
