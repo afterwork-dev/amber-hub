@@ -4,7 +4,7 @@
  *
  * The amber-is-hover, amber-is-focus and amber-is-pressed classes exist for the gallery: they
  * force a state for preview and get exactly the same styles as :hover, :focus-visible and :active.
- * The field roots (amber-text-field, amber-select) accept amber-is-focus for their control.
+ * The field roots (amber-text-field, amber-select, amber-choice) accept amber-is-focus for their control.
  */
 
 .amber-button {
@@ -320,4 +320,178 @@
   background: var(--amber-base);
   color: var(--amber-text-muted);
   cursor: not-allowed;
+}
+
+/* switch, checkbox and radio: shared row */
+.amber-choice {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--amber-text-secondary);
+  font-size: var(--amber-type-body-size);
+  line-height: var(--amber-type-body-line-height);
+  cursor: pointer;
+}
+
+/* visually hidden but still focusable: it sits over the visual control */
+.amber-choice__input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+  transform: translateY(-50%);
+}
+
+.amber-switch .amber-choice__input {
+  width: 36px;
+}
+
+.amber-switch__track,
+.amber-checkbox__box,
+.amber-radio__circle {
+  position: relative;
+  box-sizing: border-box;
+  flex: none;
+  transition:
+    background-color var(--amber-duration-fast) var(--amber-easing),
+    border-color var(--amber-duration-fast) var(--amber-easing),
+    color var(--amber-duration-fast) var(--amber-easing),
+    box-shadow var(--amber-duration-fast) var(--amber-easing);
+}
+
+/* switch */
+.amber-switch__track {
+  width: 36px;
+  height: 20px;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-raised);
+}
+
+.amber-switch__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-text-secondary);
+  transition:
+    background-color var(--amber-duration-fast) var(--amber-easing),
+    transform var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-choice__input:checked + .amber-switch__track {
+  background: var(--amber-accent-500);
+}
+
+.amber-choice__input:checked + .amber-switch__track .amber-switch__knob {
+  background: var(--amber-text-primary);
+  transform: translateX(16px);
+}
+
+/* checkbox */
+.amber-checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--amber-border);
+  border-radius: 6px;
+  color: var(--amber-on-accent);
+}
+
+.amber-checkbox__icon {
+  flex: none;
+}
+
+.amber-choice__input:is(:checked, :indeterminate) + .amber-checkbox__box {
+  border-color: var(--amber-accent-500);
+  background: var(--amber-accent-500);
+}
+
+/* radio */
+.amber-radio__circle {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--amber-border);
+  border-radius: var(--amber-radius-full);
+}
+
+.amber-radio__circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 8px;
+  height: 8px;
+  margin: auto;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-accent-500);
+  opacity: 0;
+  transition: opacity var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-choice__input:checked + .amber-radio__circle {
+  border-color: var(--amber-accent-500);
+}
+
+.amber-choice__input:checked + .amber-radio__circle::after {
+  opacity: 1;
+}
+
+/* focus */
+.amber-choice__input:focus-visible
+  + :is(.amber-switch__track, .amber-checkbox__box, .amber-radio__circle),
+.amber-choice.amber-is-focus :is(.amber-switch__track, .amber-checkbox__box, .amber-radio__circle) {
+  outline: 1px solid var(--amber-accent-500);
+  box-shadow: var(--amber-focus-ring);
+}
+
+/* disabled: loses the accent, keeps the on/off position */
+.amber-choice--disabled {
+  color: var(--amber-text-muted);
+  cursor: not-allowed;
+}
+
+.amber-choice--disabled .amber-choice__input + .amber-switch__track {
+  background: var(--amber-card);
+}
+
+.amber-choice--disabled .amber-choice__input + .amber-switch__track .amber-switch__knob {
+  background: var(--amber-text-muted);
+}
+
+.amber-choice--disabled .amber-choice__input + :is(.amber-checkbox__box, .amber-radio__circle) {
+  border-color: var(--amber-raised);
+}
+
+.amber-choice--disabled .amber-choice__input:is(:checked, :indeterminate) + .amber-checkbox__box {
+  background: var(--amber-raised);
+  color: var(--amber-text-muted);
+}
+
+.amber-choice--disabled .amber-radio__circle::after {
+  background: var(--amber-raised);
+}
+
+/* radio group */
+.amber-radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.amber-radio-group__label {
+  margin-bottom: var(--amber-space-2);
+  color: var(--amber-text-secondary);
+  font-size: var(--amber-type-caption-size);
+  font-weight: var(--amber-type-caption-weight);
+  line-height: var(--amber-type-caption-line-height);
 }

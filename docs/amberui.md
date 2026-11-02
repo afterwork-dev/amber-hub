@@ -214,6 +214,19 @@ The chevron is 20px and sits 16px from the end edge [derived].
   navigation.
 - **Labels:** each control has a label to its right, 12px from the control, in body
   text-secondary. The whole row is the click target (≥44px).
+- **Switch, checkbox and radio details** [derived]:
+  - the on-state switch knob uses text-primary, because there is no white token;
+  - the check and dash icons are 14px Lucide `Check` and `Minus`;
+  - an indeterminate checkbox (it wins over checked) has the checked fill with the dash
+    instead of the check;
+  - disabled loses the accent and keeps the on/off position: the switch track is card with a
+    text-muted knob, the checkbox and radio outlines are raised, a checked checkbox is a raised
+    fill with a text-muted icon, a selected radio has a raised ring and dot, and the label is
+    text-muted;
+  - a radio group's label sits above the radios in caption size, text-secondary, 8px from them,
+    and the group is named by it with `aria-labelledby`;
+  - arrow keys move between the enabled radios of a group, wrap at both ends and skip disabled
+    radios.
 
 ### 4.5 Card
 

@@ -24,10 +24,11 @@ describe('page registry', () => {
     ])
   })
 
-  it('has the Buttons and Text input & select Components pages and no Layouts pages yet', () => {
+  it('has the Buttons, Text input & select and Switch, checkbox & radio Components pages and no Layouts pages yet', () => {
     expect(pages.filter((page) => page.group === 'Components')).toEqual([
       { group: 'Components', title: 'Buttons', path: '/components/buttons' },
       { group: 'Components', title: 'Text input & select', path: '/components/text-input' },
+      { group: 'Components', title: 'Switch, checkbox & radio', path: '/components/selection' },
     ])
     expect(pages.filter((page) => page.group === 'Layouts')).toEqual([])
   })

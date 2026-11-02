@@ -12,6 +12,7 @@ const components: Record<string, () => Promise<RouteComponent>> = {
   '/foundations/icons': () => import('./pages/IconsPage.vue'),
   '/components/buttons': () => import('./pages/ButtonsPage.vue'),
   '/components/text-input': () => import('./pages/TextInputPage.vue'),
+  '/components/selection': () => import('./pages/SelectionControlsPage.vue'),
 }
 
 const router = createRouter({

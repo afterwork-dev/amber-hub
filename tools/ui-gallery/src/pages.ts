@@ -21,4 +21,5 @@ export const pages: readonly GalleryPage[] = [
   { group: 'Foundations', title: 'Icons', path: '/foundations/icons' },
   { group: 'Components', title: 'Buttons', path: '/components/buttons' },
   { group: 'Components', title: 'Text input & select', path: '/components/text-input' },
+  { group: 'Components', title: 'Switch, checkbox & radio', path: '/components/selection' },
 ]
