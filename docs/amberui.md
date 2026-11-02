@@ -192,11 +192,15 @@ raised border, body text in text-primary and a text-muted placeholder.
 - **Field:** a label above the input (caption, text-secondary, 8px gap) and an
   optional hint below (caption, text-muted). A label is required, either visible or as
   `aria-label`.
+- **Leading icon and focus over error** [derived]: a leading icon is 20px, text-muted and
+  sits 16px from the start edge, with the text starting 8px after it. While focused, the
+  focus styling (accent-500 border plus ring) wins over the error border.
 
 ### 4.3 Select
 
 The select looks the same as the text input, with a trailing chevron-down icon in
 text-muted. Version 1 wraps a native `<select>` for accessibility and mobile behaviour.
+The chevron is 20px and sits 16px from the end edge [derived].
 
 ### 4.4 Switch, checkbox, radio
 

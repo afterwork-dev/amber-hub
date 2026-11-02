@@ -220,7 +220,7 @@ shared/          # Types shared by both (ApiResponse<T>, error codes)
 apps/            # In-repo Apps, one workspace each (see developer.md)
 tools/app-sdk/   # The App-Hub contract: types + callAppApi, the only Hub package an App may import
 tools/app-build/ # Build tooling: validates each App's package and syncs it into app storage
-tools/ui/        # AmberUI design system (@amber-hub/ui): design tokens, Lucide icons and the first components (`AmberButton`, `AmberIconButton`); see docs/amberui.md
+tools/ui/        # AmberUI design system (@amber-hub/ui): design tokens, Lucide icons and the first components (`AmberButton`, `AmberIconButton`, `AmberTextField`, `AmberSelect`); see docs/amberui.md
 tools/ui-gallery/ # AmberUI gallery (dev only, not in the image): npm run gallery
 docker/          # nginx config template + entrypoint script for the single-container build
 Dockerfile       # multi-stage build: builds all workspaces, then assembles the runtime image

@@ -4,6 +4,7 @@
  *
  * The amber-is-hover, amber-is-focus and amber-is-pressed classes exist for the gallery: they
  * force a state for preview and get exactly the same styles as :hover, :focus-visible and :active.
+ * The field roots (amber-text-field, amber-select) accept amber-is-focus for their control.
  */
 
 .amber-button {
@@ -204,4 +205,119 @@
   height: 8px;
   border-radius: var(--amber-radius-full);
   background: var(--amber-accent-500);
+}
+
+/* text field and select: shared field parts */
+.amber-text-field,
+.amber-select {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+.amber-field__label {
+  display: block;
+  margin-bottom: var(--amber-space-2);
+  color: var(--amber-text-secondary);
+  font-size: var(--amber-type-caption-size);
+  font-weight: var(--amber-type-caption-weight);
+  line-height: var(--amber-type-caption-line-height);
+}
+
+.amber-field__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.amber-field__hint,
+.amber-field__error {
+  margin: var(--amber-space-2) 0 0;
+  font-size: var(--amber-type-caption-size);
+  font-weight: var(--amber-type-caption-weight);
+  line-height: var(--amber-type-caption-line-height);
+}
+
+.amber-field__hint {
+  color: var(--amber-text-muted);
+}
+
+.amber-field__error {
+  color: var(--amber-error);
+}
+
+.amber-text-field__input,
+.amber-select__control {
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--amber-space-12);
+  margin: 0;
+  padding: 0 var(--amber-space-4);
+  border: 1px solid var(--amber-raised);
+  border-radius: var(--amber-radius-md);
+  background: var(--amber-card);
+  color: var(--amber-text-primary);
+  font-family: inherit;
+  font-size: var(--amber-type-body-size);
+  line-height: var(--amber-type-body-line-height);
+  transition:
+    border-color var(--amber-duration-fast) var(--amber-easing),
+    box-shadow var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-text-field__input::placeholder {
+  color: var(--amber-text-muted);
+  opacity: 1;
+}
+
+.amber-text-field__icon,
+.amber-select__chevron {
+  position: absolute;
+  top: 50%;
+  color: var(--amber-text-muted);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.amber-text-field__icon {
+  left: var(--amber-space-4);
+}
+
+.amber-text-field__icon + .amber-text-field__input {
+  padding-left: 44px;
+}
+
+.amber-select__control {
+  appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.amber-select__chevron {
+  right: var(--amber-space-4);
+}
+
+/* error */
+.amber-text-field--error .amber-text-field__input,
+.amber-select--error .amber-select__control {
+  border-color: var(--amber-error);
+}
+
+/* focus: wins over the error border */
+.amber-text-field__input:focus-visible,
+.amber-select__control:focus-visible,
+.amber-text-field.amber-is-focus .amber-text-field__input,
+.amber-select.amber-is-focus .amber-select__control {
+  border-color: var(--amber-accent-500);
+  outline: none;
+  box-shadow: var(--amber-focus-ring);
+}
+
+/* disabled */
+.amber-text-field__input:disabled,
+.amber-select__control:disabled {
+  border-color: var(--amber-card);
+  background: var(--amber-base);
+  color: var(--amber-text-muted);
+  cursor: not-allowed;
 }

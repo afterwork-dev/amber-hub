@@ -11,6 +11,7 @@ const components: Record<string, () => Promise<RouteComponent>> = {
   '/foundations/motion': () => import('./pages/MotionPage.vue'),
   '/foundations/icons': () => import('./pages/IconsPage.vue'),
   '/components/buttons': () => import('./pages/ButtonsPage.vue'),
+  '/components/text-input': () => import('./pages/TextInputPage.vue'),
 }
 
 const router = createRouter({
