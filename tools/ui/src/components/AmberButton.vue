@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, type Component } from 'vue'
+import AmberSpinner from './AmberSpinner.vue'
 
 export interface AmberButtonProps {
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
@@ -73,6 +74,13 @@ function onClick(event: MouseEvent) {
       aria-hidden="true"
       :size="iconSize"
     />
-    <span v-if="loading" class="amber-button__spinner" aria-hidden="true" />
+    <AmberSpinner
+      v-if="loading"
+      class="amber-button__spinner"
+      :delay="false"
+      :size="size === 'sm' ? 16 : 20"
+      :on-accent="variant === 'primary'"
+      aria-hidden="true"
+    />
   </component>
 </template>
