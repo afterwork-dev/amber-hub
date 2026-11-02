@@ -12,7 +12,7 @@ export interface FieldProps {
 // module counter keeps generated ids unique across apps on the same page.
 let instanceCount = 0
 
-// Shared id, label and aria wiring for the AmberUI field components (text field, select).
+// Shared id, label and aria wiring for the AmberUI field components (text field, select, switch, checkbox, radio).
 export function useField(component: string, props: FieldProps) {
   const generatedId = `${useId()}-${instanceCount++}`
   const controlId = computed(() => props.id || generatedId)
