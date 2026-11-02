@@ -6,6 +6,7 @@ const switches = ref({ off: false, on: true, focus: false, disabledOff: false, d
 
 const checkboxes = ref({
   unchecked: false,
+  indeterminate: false,
   checked: true,
   focus: false,
   disabledUnchecked: false,
@@ -34,7 +35,7 @@ const disabledGroup = ref('selected')
     <AmberCheckbox v-model="checkboxes.unchecked" label="Unchecked" />
     <AmberCheckbox v-model="checkboxes.checked" label="Checked" />
     <AmberCheckbox
-      v-model="checkboxes.unchecked"
+      v-model="checkboxes.indeterminate"
       v-model:indeterminate="indeterminate"
       label="Indeterminate"
     />
