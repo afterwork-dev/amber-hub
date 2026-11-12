@@ -15,6 +15,10 @@ const components: Record<string, () => Promise<RouteComponent>> = {
   '/components/selection': () => import('./pages/SelectionControlsPage.vue'),
   '/components/card-feedback': () => import('./pages/CardFeedbackPage.vue'),
   '/components/dialog': () => import('./pages/DialogPage.vue'),
+  '/components/navigation': () => import('./pages/NavigationPage.vue'),
+  '/layouts/app-shell': () => import('./pages/AppShellPage.vue'),
+  '/layouts/dashboard': () => import('./pages/DashboardPage.vue'),
+  '/layouts/form': () => import('./pages/FormPage.vue'),
 }
 
 const router = createRouter({
