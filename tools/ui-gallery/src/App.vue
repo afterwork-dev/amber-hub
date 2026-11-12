@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, provide, ref } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
+import { AmberConfirmHost } from '@amber-hub/ui'
 import { groups, pages } from './pages'
 import { findPreset, frameWidthKey, viewportPresets, type ViewportPreset } from './viewports'
 
@@ -84,7 +85,7 @@ onBeforeUnmount(() => observer?.disconnect())
           :style="preset ? { width: `${preset.width}px` } : undefined"
         >
           <h1 class="gallery-title">{{ title }}</h1>
-          <RouterView />
+          <AmberConfirmHost><RouterView /></AmberConfirmHost>
         </div>
       </main>
     </div>

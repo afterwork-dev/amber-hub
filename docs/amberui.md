@@ -285,6 +285,27 @@ text-secondary. Actions are aligned to the end, 8px apart, with the primary acti
 - **Confirm dialog:** a title, a message, Cancel (secondary) and Confirm (primary, or
   danger for destructive actions). It resolves to true or false.
 
+- **Dialog details** [derived]:
+  - `AmberDialog` takes `v-model` for the open state, a `title` prop (or `title` slot), a default
+    body slot and an `actions` slot, and renders the body and actions wrappers only when their
+    slot has content; `persistent` turns off closing by Escape and scrim click;
+  - it is a native `<dialog>` opened with `showModal()`, so it sits in the top layer, makes the
+    page inert and works inside a shadow root;
+  - all content and padding sit in a `.amber-dialog__panel` wrapper, so a click whose
+    `pointerdown` and `click` both target the `<dialog>` itself is a scrim click, and a text
+    selection drag that ends outside does not close it;
+  - the component records the focused element, looking through open shadow roots, and focuses
+    it again after closing;
+  - `AmberConfirmDialog` takes `title`, `message`, `confirmLabel` (default "Confirm"),
+    `cancelLabel` (default "Cancel") and `destructive`; Cancel comes first and gets initial
+    focus; it emits `result` (`true` for Confirm, `false` otherwise) once per close, then
+    `update:modelValue`;
+  - an app or the Hub wraps its root content in one `AmberConfirmHost`, inside its shadow root,
+    and any component below it calls `useConfirm()` to get `confirm(options)`, which returns a
+    `Promise<boolean>`;
+  - confirms requested while one is open are queued and open one after another, each promise
+    resolving once.
+
 ### 4.9 Top navigation bar
 
 The top bar is 72px tall, with a card fill, `radius-xl` and elevation 1, and sits within
