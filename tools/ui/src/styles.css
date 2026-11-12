@@ -765,8 +765,8 @@
 .amber-dialog__panel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 32px;
+  gap: var(--amber-space-4);
+  padding: var(--amber-space-8);
 }
 
 .amber-dialog__title {
@@ -788,7 +788,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 8px;
+  gap: var(--amber-space-2);
 }
 
 @keyframes amber-dialog-in {
@@ -804,6 +804,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .amber-dialog {
+    animation: none;
+  }
+
   .amber-spinner {
     animation-duration: 1.6s;
   }

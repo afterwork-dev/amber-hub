@@ -81,6 +81,29 @@ describe('AmberConfirmHost and useConfirm', () => {
     expect(order).toEqual(['first true', 'second false'])
   })
 
+  it('ignores a close event that arrives after the next request opened', async () => {
+    // Browsers queue the native close event, so it fires after the dialog was shown again.
+    close.mockImplementationOnce(function (this: HTMLDialogElement) {
+      this.removeAttribute('open')
+      setTimeout(() => this.dispatchEvent(new Event('close')))
+    })
+    const { wrapper, confirm } = mountHost()
+    const first = confirm({ title: 'First', message: 'one' })
+    const second = confirm({ title: 'Second', message: 'two' })
+    let settled = false
+    void second.then(() => (settled = true))
+    await nextTick()
+    await buttonLabelled(wrapper, 'Confirm')?.trigger('click')
+    await first
+    await nextTick()
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve, 5))
+    expect(wrapper.get('.amber-dialog__title').text()).toBe('Second')
+    expect(settled).toBe(false)
+    await buttonLabelled(wrapper, 'Confirm')?.trigger('click')
+    await expect(second).resolves.toBe(true)
+  })
+
   it('throws without a host', () => {
     const Lonely = defineComponent({
       setup() {

@@ -77,7 +77,8 @@ function onClick(event: MouseEvent) {
 
 // A native close, e.g. from a <form method="dialog"> inside, while the parent still says open.
 function onClose() {
-  if (props.modelValue) emit('update:modelValue', false)
+  // The event is queued, so it can arrive after the dialog was opened again; ignore it then.
+  if (props.modelValue && !dialog.value?.open) emit('update:modelValue', false)
 }
 
 onMounted(() => {

@@ -99,6 +99,7 @@ describe('AmberDialog', () => {
 
   it('emits false on a native close while still open', async () => {
     const wrapper = mount(AmberDialog, { props: { modelValue: true, title: 'T' } })
+    wrapper.get('dialog').element.removeAttribute('open')
     await wrapper.get('dialog').trigger('close')
     expect(wrapper.emitted('update:modelValue')).toEqual([[false]])
   })

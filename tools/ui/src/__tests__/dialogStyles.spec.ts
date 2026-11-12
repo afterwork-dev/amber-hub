@@ -31,6 +31,7 @@ describe('styles.css dialog', () => {
   it('keeps one reduced-motion block, at the end', () => {
     const marker = '@media (prefers-reduced-motion: reduce)'
     expect(css.split(marker)).toHaveLength(2)
-    expect(css.lastIndexOf('.amber-dialog')).toBeLessThan(css.lastIndexOf(marker))
+    expect(css.lastIndexOf('.amber-dialog__panel')).toBeLessThan(css.lastIndexOf(marker))
+    expect(css.slice(css.lastIndexOf(marker))).toContain('.amber-dialog {')
   })
 })
