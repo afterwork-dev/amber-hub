@@ -24,4 +24,8 @@ export const pages: readonly GalleryPage[] = [
   { group: 'Components', title: 'Switch, checkbox & radio', path: '/components/selection' },
   { group: 'Components', title: 'Card, badge & feedback', path: '/components/card-feedback' },
   { group: 'Components', title: 'Dialog', path: '/components/dialog' },
+  { group: 'Components', title: 'Top bar & drawer', path: '/components/navigation' },
+  { group: 'Layouts', title: 'App shell', path: '/layouts/app-shell' },
+  { group: 'Layouts', title: 'Dashboard', path: '/layouts/dashboard' },
+  { group: 'Layouts', title: 'Form', path: '/layouts/form' },
 ]

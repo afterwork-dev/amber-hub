@@ -316,6 +316,24 @@ the page margins. From the start: the app mark (24px accent tile, radius-sm) and
 active section is accent-500 text at weight 600, with `aria-current="page"`. At the end:
 icon buttons and the avatar, all with 48px targets.
 
+- **Top bar details** [derived]:
+  - `AmberTopBar` takes `appName`, `navLabel` (default "Sections") and `menuLabel` (default
+    "Open navigation"); the default slot holds the section links inside a `<nav>` labelled by
+    `navLabel`, and the `end` slot sits at the end edge;
+  - links are `AmberNavItem`s: an `<a>` with `href` (or a string `to`), or, with `as`, any
+    component such as a router link, which receives whichever of `to` and `href` were given;
+    `active` sets `aria-current="page"` and the `amber-nav-item--active` class, and wins over a
+    component's own `aria-current`; `@amber-hub/ui` never imports `vue-router`, so callers pass
+    the link component through `as`;
+  - the same `AmberNavItem` serves the drawer and is styled by its container: in the top bar
+    it is body size, weight 500, text-secondary with a 48px target, and the nav scrolls
+    horizontally when the links do not fit, so no link is hidden on phones;
+  - inside an `AmberAppShell` in narrow mode the bar starts with an `AmberIconButton` (Lucide
+    `Menu`) that has `aria-label` set to `menuLabel`, `aria-expanded` for the overlay drawer and
+    `aria-controls` set to the drawer's id; outside a shell, or when the shell is wide, there is
+    no menu button;
+  - the shell and the bar share state through an injection key (`components/appShell.ts`).
+
 ### 4.10 Left navigation drawer
 
 The drawer has a card fill and `radius-xl`, and is 280–320px wide on desktop (default
@@ -330,6 +348,43 @@ overlay with a scrim.
 - **Account switcher:** pinned to the bottom and separated by a 1px raised hairline. It
   shows a 44px avatar circle (raised), the name in body text-primary and a trailing
   chevron-right.
+
+- **Drawer details** [derived]:
+  - `AmberNavDrawer` takes `appName` and `label` (default "Main") and renders a `<nav>` of 288px
+    width as a flex column: the header, the default slot (the sections) in an area that scrolls
+    vertically, and an `account` slot whose pinned wrapper is rendered only when the slot has
+    content;
+  - `AmberNavSection` takes `label` and renders a `role="group"` labelled (`aria-labelledby`, a
+    unique id) by its overline label, uppercase with `letter-spacing: 0.12em` in text-muted; its
+    `AmberNavItem`s follow it in the default slot, where the caller controls `as`, `to` and
+    `active`;
+  - `AmberAccountSwitcher` takes `name` and renders a full-width `<button type="button">` that
+    emits `click` and does nothing else; its avatar circle shows the uppercased first letters of
+    the first two words of `name`, because there is no image source;
+  - hover (`:hover`, `.amber-is-hover`) is a raised fill, active is an accent-tint fill with
+    accent-400 text at weight 600, and keyboard focus uses the standard focus ring (section 2.8);
+  - the overlay scrim is `rgba(0, 0, 0, 0.6)`, declared once in a selector list shared with the
+    dialog's `::backdrop`, so it is still the only raw colour.
+
+**App shell** [derived]: `AmberAppShell` lays out the top bar, the drawer and the page
+(`top-bar`, `drawer` and default slots).
+
+- It reads its own border-box inline size, from `getBoundingClientRect()` on mount and then a
+  `ResizeObserver`, never the window width, and sets a size class: `amber-app-shell--phone`
+  (<768px, 16px inline margins), `--tablet` (768-1279px, 32px) or `--desktop` (≥1280px, 80px).
+  It also sets `amber-app-shell--narrow` below 1024px.
+- The top bar sits across the full width inside the margins, 24px above the body (16px block
+  padding in phone size, 24px otherwise). In wide mode the body has the 288px drawer column and
+  the content area with a 24px gap; in narrow mode it has only the content area.
+- The content area is a `<main>` with a 12-column grid (24px column and row gap); pages place
+  their children with `grid-column: span N`.
+- In narrow mode the menu button opens the drawer as an overlay that covers the shell's own box
+  (not the window), with a scrim and the drawer at the start edge, inset by the margin and no
+  taller than the visible viewport. It slides in over `--amber-duration-normal`. It is not modal:
+  there is no focus trap.
+- On open, focus moves to the first focusable element in the drawer. Escape and a click on the
+  scrim close it, and focus returns to the menu button. If the shell becomes wide while it is
+  open, the overlay closes and the drawer moves back into the body.
 
 ### 4.11 Spinner
 

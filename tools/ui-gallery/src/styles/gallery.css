@@ -162,3 +162,65 @@ input {
   font-size: var(--amber-type-caption-size);
   line-height: var(--amber-type-caption-line-height);
 }
+
+.demo-avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--amber-space-12);
+  height: var(--amber-space-12);
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-raised);
+  color: var(--amber-text-primary);
+  font-weight: 600;
+}
+
+/* Layout demos: children of the shell's 12-column content grid. The size classes come from the
+   shell's own width, so these follow the frame and not the window. */
+.demo-span-full {
+  grid-column: span 12;
+}
+
+.demo-span-half,
+.demo-span-third,
+.demo-span-tile {
+  grid-column: span 12;
+}
+
+.amber-app-shell--tablet .demo-span-half,
+.amber-app-shell--desktop .demo-span-half {
+  grid-column: span 6;
+}
+
+.amber-app-shell--tablet .demo-span-third,
+.amber-app-shell--desktop .demo-span-third {
+  grid-column: span 4;
+}
+
+.amber-app-shell--tablet .demo-span-tile {
+  grid-column: span 6;
+}
+
+.amber-app-shell--desktop .demo-span-tile {
+  grid-column: span 4;
+}
+
+.demo-span-form {
+  grid-column: span 12;
+}
+
+.amber-app-shell--desktop .demo-span-form {
+  grid-column: 3 / span 8;
+}
+
+.demo-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--amber-space-6);
+}
+
+.demo-form-actions {
+  display: flex;
+  gap: var(--amber-space-2);
+}
