@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, provide, ref } from 'vue'
+import { nextTick, onBeforeUnmount, provide, ref } from 'vue'
 import AmberConfirmDialog from './AmberConfirmDialog.vue'
 import { confirmKey, type AmberConfirmOptions } from './useConfirm'
 
@@ -11,6 +11,9 @@ interface Request {
 const open = ref(false)
 const options = ref<AmberConfirmOptions>({ title: '', message: '' })
 let current: Request | undefined
+// True from a close until the dialog has really closed, so a request made from the answer's
+// continuation queues instead of reopening in the same tick.
+let closing = false
 const queue: Request[] = []
 
 function showNext() {
@@ -24,7 +27,7 @@ function showNext() {
 provide(confirmKey, (requested) => {
   return new Promise<boolean>((resolve) => {
     queue.push({ options: requested, resolve })
-    if (!current) showNext()
+    if (!current && !closing) showNext()
   })
 })
 
@@ -36,9 +39,19 @@ function onUpdate(value: boolean) {
   if (value || !current) return
   open.value = false
   current = undefined
+  closing = true
   // Wait for the dialog to close before the next request opens it again.
-  nextTick(showNext)
+  nextTick(() => {
+    closing = false
+    showNext()
+  })
 }
+
+// Nobody is left to answer, so every pending request resolves false.
+onBeforeUnmount(() => {
+  for (const request of [current, ...queue.splice(0)]) request?.resolve(false)
+  current = undefined
+})
 </script>
 
 <template>

@@ -104,6 +104,34 @@ describe('AmberConfirmHost and useConfirm', () => {
     await expect(second).resolves.toBe(true)
   })
 
+  it('shows a confirm requested from the previous answer and lets it be answered', async () => {
+    const { wrapper, confirm } = mountHost()
+    let second: Promise<boolean> | undefined
+    const first = confirm({ title: 'First', message: 'one' }).then((value) => {
+      second = confirm({ title: 'Second', message: 'two' })
+      return value
+    })
+    await nextTick()
+    await buttonLabelled(wrapper, 'Confirm')?.trigger('click')
+    await first
+    await nextTick()
+    await nextTick()
+    expect(wrapper.get('.amber-dialog__title').text()).toBe('Second')
+    expect(showModal).toHaveBeenCalledTimes(2)
+    await buttonLabelled(wrapper, 'Confirm')?.trigger('click')
+    await expect(second).resolves.toBe(true)
+  })
+
+  it('resolves pending and queued requests to false when unmounted', async () => {
+    const { wrapper, confirm } = mountHost()
+    const first = confirm({ title: 'First', message: 'one' })
+    const second = confirm({ title: 'Second', message: 'two' })
+    await nextTick()
+    wrapper.unmount()
+    await expect(first).resolves.toBe(false)
+    await expect(second).resolves.toBe(false)
+  })
+
   it('throws without a host', () => {
     const Lonely = defineComponent({
       setup() {
