@@ -758,6 +758,7 @@
   animation: amber-dialog-in var(--amber-duration-normal) var(--amber-easing);
 }
 
+.amber-app-shell__scrim,
 .amber-dialog::backdrop {
   background: rgba(0, 0, 0, 0.6);
 }
@@ -800,6 +801,302 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* navigation: app mark, nav item, top bar, drawer, account switcher */
+.amber-app-mark {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--amber-radius-sm);
+  background: var(--amber-accent-500);
+}
+
+.amber-nav-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  color: var(--amber-text-secondary);
+  font-size: var(--amber-type-body-size);
+  line-height: var(--amber-type-body-line-height);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.amber-nav-item:is(:focus-visible, .amber-is-focus) {
+  outline: 1px solid var(--amber-accent-500);
+  box-shadow: var(--amber-focus-ring);
+}
+
+.amber-top-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--amber-space-2);
+  min-width: 0;
+  height: 72px;
+  padding: 0 var(--amber-space-4);
+  border-radius: var(--amber-radius-xl);
+  background: var(--amber-card);
+  box-shadow: var(--amber-elevation-1);
+}
+
+.amber-top-bar__name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--amber-text-primary);
+  font-size: var(--amber-type-subheading-size);
+  font-weight: var(--amber-type-subheading-weight);
+  line-height: var(--amber-type-subheading-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amber-top-bar__nav {
+  display: flex;
+  flex: 1 1 auto;
+  gap: var(--amber-space-2);
+  min-width: 0;
+  margin-inline-start: var(--amber-space-4);
+  padding-block: var(--amber-space-1);
+  overflow-x: auto;
+}
+
+.amber-top-bar__end {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--amber-space-2);
+  margin-inline-start: auto;
+}
+
+.amber-top-bar .amber-nav-item {
+  flex: none;
+  height: var(--amber-space-12);
+  padding: 0 var(--amber-space-4);
+  border-radius: var(--amber-radius-full);
+  font-weight: 500;
+}
+
+.amber-top-bar .amber-nav-item:is(:hover, .amber-is-hover) {
+  color: var(--amber-text-primary);
+}
+
+.amber-top-bar .amber-nav-item--active {
+  color: var(--amber-accent-500);
+  font-weight: 600;
+}
+
+.amber-nav-drawer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 288px;
+  max-width: 100%;
+  min-height: 0;
+  border-radius: var(--amber-radius-xl);
+  background: var(--amber-card);
+  box-shadow: var(--amber-elevation-1);
+}
+
+.amber-nav-drawer__header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--amber-space-2);
+  padding: var(--amber-space-6) calc(var(--amber-space-4) + 20px) var(--amber-space-4);
+}
+
+.amber-nav-drawer__name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--amber-text-primary);
+  font-size: var(--amber-type-subheading-size);
+  font-weight: var(--amber-type-subheading-weight);
+  line-height: var(--amber-type-subheading-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amber-nav-drawer__sections {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--amber-space-6);
+  min-height: 0;
+  padding: 0 var(--amber-space-4) var(--amber-space-4);
+  overflow-y: auto;
+}
+
+.amber-nav-drawer__account {
+  flex: none;
+  padding: var(--amber-space-4);
+  border-top: 1px solid var(--amber-raised);
+}
+
+.amber-nav-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.amber-nav-section__label {
+  padding: var(--amber-space-2) 20px;
+  color: var(--amber-text-muted);
+  font-size: var(--amber-type-overline-size);
+  font-weight: var(--amber-type-overline-weight);
+  letter-spacing: 0.12em;
+  line-height: var(--amber-type-overline-line-height);
+  text-transform: uppercase;
+}
+
+.amber-nav-drawer .amber-nav-item {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--amber-radius-sm);
+  transition:
+    background-color var(--amber-duration-fast) var(--amber-easing),
+    color var(--amber-duration-fast) var(--amber-easing);
+}
+
+.amber-nav-drawer .amber-nav-item:is(:hover, .amber-is-hover) {
+  background: var(--amber-raised);
+}
+
+.amber-nav-drawer .amber-nav-item--active {
+  background: var(--amber-accent-tint);
+  color: var(--amber-accent-400);
+  font-weight: 600;
+}
+
+.amber-account-switcher {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--amber-space-4);
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--amber-radius-full);
+  background: none;
+  color: var(--amber-text-primary);
+  font-family: inherit;
+  font-size: var(--amber-type-body-size);
+  line-height: var(--amber-type-body-line-height);
+  text-align: start;
+  cursor: pointer;
+}
+
+.amber-account-switcher:is(:focus-visible, .amber-is-focus) {
+  outline: 1px solid var(--amber-accent-500);
+  box-shadow: var(--amber-focus-ring);
+}
+
+.amber-account-switcher__avatar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--amber-radius-full);
+  background: var(--amber-raised);
+  color: var(--amber-text-primary);
+  font-weight: 600;
+}
+
+.amber-account-switcher__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amber-account-switcher__chevron {
+  flex: none;
+  color: var(--amber-text-muted);
+}
+
+/* app shell: sizes come from the shell's own width (modifier classes set by AmberAppShell) */
+.amber-app-shell {
+  --amber-shell-margin: var(--amber-space-4);
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--amber-space-6);
+  padding: var(--amber-space-6) var(--amber-shell-margin);
+}
+
+.amber-app-shell--phone {
+  --amber-shell-margin: var(--amber-space-4);
+  padding-block: var(--amber-space-4);
+  padding-inline: var(--amber-space-4);
+}
+
+.amber-app-shell--tablet {
+  --amber-shell-margin: var(--amber-space-8);
+  padding-inline: var(--amber-space-8);
+}
+
+.amber-app-shell--desktop {
+  --amber-shell-margin: 80px;
+  padding-inline: 80px;
+}
+
+.amber-app-shell__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--amber-space-6);
+}
+
+.amber-app-shell:not(.amber-app-shell--narrow) > .amber-app-shell__body {
+  grid-template-columns: 288px minmax(0, 1fr);
+}
+
+.amber-app-shell__content {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-content: start;
+  gap: var(--amber-space-6);
+  min-width: 0;
+}
+
+.amber-app-shell__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.amber-app-shell__scrim {
+  position: absolute;
+  inset: 0;
+}
+
+/* the drawer stays within the visible viewport while the overlay covers the whole shell */
+.amber-app-shell__overlay > .amber-nav-drawer {
+  position: sticky;
+  top: var(--amber-space-4);
+  z-index: 1;
+  max-width: calc(100% - 2 * var(--amber-shell-margin));
+  max-height: calc(100dvh - 2 * var(--amber-space-4));
+  margin: var(--amber-space-4) 0 0;
+  margin-inline-start: var(--amber-shell-margin);
+  animation: amber-drawer-in var(--amber-duration-normal) var(--amber-easing);
+}
+
+@keyframes amber-drawer-in {
+  from {
+    transform: translateX(calc(-100% - var(--amber-shell-margin)));
+  }
+
+  to {
+    transform: translateX(0);
   }
 }
 
