@@ -23,6 +23,11 @@ describe('styles.css dialog', () => {
     }
   })
 
+  it('has the scrim as a standalone rule and the only raw colour', () => {
+    expect(css).toContain('.amber-dialog::backdrop {\n  background: rgba(0, 0, 0, 0.6);\n}')
+    expect(css.match(/rgba?\(/g)).toHaveLength(1)
+  })
+
   it('keeps one reduced-motion block, at the end', () => {
     const marker = '@media (prefers-reduced-motion: reduce)'
     expect(css.split(marker)).toHaveLength(2)

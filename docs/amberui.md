@@ -294,6 +294,8 @@ text-secondary. Actions are aligned to the end, 8px apart, with the primary acti
   - all content and padding sit in a `.amber-dialog__panel` wrapper, so a click whose
     `pointerdown` and `click` both target the `<dialog>` itself is a scrim click, and a text
     selection drag that ends outside does not close it;
+  - the scrim is a literal `rgba(0, 0, 0, 0.6)` on `::backdrop` rather than a token, because a
+    custom property on `::backdrop` only resolves in recent browsers;
   - the component records the focused element, looking through open shadow roots, and focuses
     it again after closing;
   - `AmberConfirmDialog` takes `title`, `message`, `confirmLabel` (default "Confirm"),
