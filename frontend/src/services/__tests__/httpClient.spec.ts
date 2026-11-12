@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { httpDelete, httpGet, httpPost, HttpClientError } from '../httpClient'
+import { apiUrl, httpDelete, httpGet, httpPost, HttpClientError } from '../httpClient'
 import { useAuthStore } from '../../stores/authStore'
 
 vi.mock('../userService', () => ({
@@ -402,5 +402,11 @@ describe('httpDelete', () => {
 
     expect(error).toBeInstanceOf(HttpClientError)
     expect(error.errorCode).toBe('NOT_FOUND')
+  })
+})
+
+describe('apiUrl', () => {
+  it('prefixes the path with the API base URL', () => {
+    expect(apiUrl('/backups/b1/download')).toBe('http://localhost:3000/api/backups/b1/download')
   })
 })

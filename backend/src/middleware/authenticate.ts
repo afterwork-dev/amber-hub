@@ -8,6 +8,7 @@ const AUTH_PATH_PREFIX = '/api/auth/'
 const RESOURCES_PATH_PREFIX = '/resources/'
 const APP_API_PATH_PREFIX = '/app-api/'
 const MCP_PATH_PREFIX = '/mcp'
+const BACKUP_DOWNLOAD_PATH = /^\/api\/backups\/[0-9a-f]{24}\/download(?:\?|$)/
 
 type AuthenticatedUser = { id: string; username: string }
 
@@ -82,7 +83,9 @@ export async function authenticate(request: FastifyRequest): Promise<void> {
   }
 
   const acceptsCookie =
-    request.url.startsWith(RESOURCES_PATH_PREFIX) || request.url.startsWith(APP_API_PATH_PREFIX)
+    request.url.startsWith(RESOURCES_PATH_PREFIX) ||
+    request.url.startsWith(APP_API_PATH_PREFIX) ||
+    BACKUP_DOWNLOAD_PATH.test(request.url)
   if (acceptsCookie) {
     const cookieUser = verifyCookie(parseCookieHeader(request.headers.cookie, 'accessToken'))
     if (cookieUser) {

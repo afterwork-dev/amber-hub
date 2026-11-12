@@ -17,3 +17,5 @@ test-results/
 *.tsbuildinfo
 apps-data/
 backend/apps-data/
+backups-data/
+backend/backups-data/

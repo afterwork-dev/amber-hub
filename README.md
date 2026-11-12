@@ -20,6 +20,7 @@ in mind.
 **Works today**
 
 - Registration, login and session renewal
+- Backups of all Hub and app data, created and downloaded from Settings ([Backups](#backups))
 - App platform: apps as workspaces with their own frontend, backend and storage, built and
   shipped with the Hub ([developer.md](developer.md))
 - MCP endpoint with per-user API keys, so an LLM client can read and add data through app tools
@@ -29,7 +30,7 @@ in mind.
 **Not there yet**
 
 - Disabling registration, password change/reset, user management
-- Data export, backups and schema migrations
+- Restoring a backup from the UI, scheduled backups and schema migrations
 - Isolation for app backends (they run as ordinary Node processes; see [Things to know before you host it](#things-to-know-before-you-host-it))
 - Installing apps at runtime (apps are built into the image)
 - A dashboard with real content
@@ -46,6 +47,9 @@ Amber Hub is alpha software and has not had a security review. In particular:
   of the Hub, with the Hub's permissions. Only run apps whose code you trust.
 - **`JWT_SECRET` protects every session.** Use a long random value and keep it out of version
   control.
+- **Every signed-in user can create and download backups.** A backup contains all users' app
+  data, password hashes and API key hashes, so with open registration anyone who can reach the
+  Hub can download it.
 - **MongoDB has no authentication by default.** Don't publish its port; the provided stack keeps
   it on the internal Docker network.
 - **API keys act as their owner.** An MCP client holding a key can read and change everything
@@ -198,6 +202,27 @@ docker build -t amber-hub --build-arg VITE_API_BASE_URL=http://other-backend-hos
 ```
 
 With no `VITE_API_BASE_URL` build argument, the built frontend defaults to `/api` — a same-origin relative path — which is what the default `docker run` example above relies on.
+
+## Backups
+
+Settings → Backups creates a backup of the whole Hub database: Hub data (users, API keys) and
+every app's collections. It runs in the background and appears in the list once it is ready, where
+it can be downloaded or deleted. One backup runs at a time.
+
+Backups are stored in `BACKUP_STORAGE_PATH` (default `backend/backups-data`). The provided
+stack mounts the `backups_data` volume at `/data/backups`; without a volume, backups are lost
+when the container is recreated.
+
+A backup is a `.tar.gz` holding `manifest.json` and a `mongodump`-compatible directory. Collections
+are copied one after another, so a backup taken while the Hub is in use is not a point-in-time
+snapshot. To restore, stop the Hub, then:
+
+```sh
+tar xzf amber-hub-backup-<timestamp>.tar.gz
+mongorestore --drop --db amber-hub dump/amber-hub
+```
+
+Start the Hub again; it recreates its indexes on startup.
 
 ## Other scripts
 

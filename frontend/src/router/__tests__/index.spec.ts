@@ -5,6 +5,7 @@ import DashboardPage from '../../pages/home/DashboardPage.vue'
 import AppViewPage from '../../pages/home/AppViewPage.vue'
 import SettingsPage from '../../pages/settings/SettingsPage.vue'
 import ApiKeyPage from '../../pages/settings/ApiKeyPage.vue'
+import BackupsPage from '../../pages/settings/BackupsPage.vue'
 import RegisterPage from '../../pages/register/RegisterPage.vue'
 import LoginPage from '../../pages/login/LoginPage.vue'
 
@@ -45,6 +46,14 @@ describe('router', () => {
     const apiKeyChild = settingsRoute?.children?.find((child) => child.path === '')
     expect(apiKeyChild?.name).toBe('settings-api-key')
     expect(apiKeyChild?.component).toBe(ApiKeyPage)
+  })
+
+  it('maps /settings/backups to BackupsPage as "settings-backups", inheriting requiresAuth', () => {
+    const resolved = router.resolve('/settings/backups')
+
+    expect(resolved.name).toBe('settings-backups')
+    expect(resolved.matched.at(-1)?.components?.default).toBe(BackupsPage)
+    expect(resolved.meta.requiresAuth).toBe(true)
   })
 
   it('resolves /settings to the settings-api-key route, inheriting requiresAuth from its parent', () => {

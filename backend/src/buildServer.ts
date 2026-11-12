@@ -8,7 +8,11 @@ import { notFoundHandler } from './middleware/notFoundHandler'
 export async function buildServer(): Promise<FastifyInstance> {
   const server = Fastify({ logger: true })
 
-  await server.register(cors, { origin: getFrontendOrigin(), credentials: true })
+  await server.register(cors, {
+    origin: getFrontendOrigin(),
+    credentials: true,
+    methods: ['GET', 'HEAD', 'POST', 'DELETE'],
+  })
 
   server.setErrorHandler(errorHandler)
   server.setNotFoundHandler(notFoundHandler)

@@ -4,6 +4,7 @@ import DashboardPage from '../pages/home/DashboardPage.vue'
 import AppViewPage from '../pages/home/AppViewPage.vue'
 import SettingsPage from '../pages/settings/SettingsPage.vue'
 import ApiKeyPage from '../pages/settings/ApiKeyPage.vue'
+import BackupsPage from '../pages/settings/BackupsPage.vue'
 import RegisterPage from '../pages/register/RegisterPage.vue'
 import LoginPage from '../pages/login/LoginPage.vue'
 import { requireAuth } from './guards/requireAuth'
@@ -22,7 +23,10 @@ const routes: RouteRecordRaw[] = [
     path: '/settings',
     component: SettingsPage,
     meta: { requiresAuth: true },
-    children: [{ path: '', name: 'settings-api-key', component: ApiKeyPage }],
+    children: [
+      { path: '', name: 'settings-api-key', component: ApiKeyPage },
+      { path: 'backups', name: 'settings-backups', component: BackupsPage },
+    ],
   },
   {
     path: '/register',

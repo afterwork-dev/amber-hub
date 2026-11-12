@@ -330,4 +330,50 @@ describe('authenticate hook', () => {
     expect(response.statusCode).toBe(401)
     expect(response.json().error.errorCode).toBe('UNAUTHORIZED')
   })
+
+  describe('backup download', () => {
+    const backupId = '0123456789abcdef01234567'
+    const validToken = () =>
+      jwt.sign({ username: 'alice', type: 'access' }, 'test-secret', { subject: 'user-1' })
+
+    async function buildBackupServer(): Promise<FastifyInstance> {
+      const server = Fastify()
+      server.setErrorHandler(errorHandler)
+      server.addHook('onRequest', authenticate)
+      server.get('/api/backups', async () => ({ ok: true }))
+      server.get('/api/backups/:id/download', async (request) => ({ user: request.user }))
+      return server
+    }
+
+    it.each([
+      `/api/backups/${backupId}/download`,
+      `/api/backups/${backupId}/download?attempt=1`,
+    ])('accepts a valid accessToken cookie on %s', async (url) => {
+      const server = await buildBackupServer()
+
+      const response = await server.inject({
+        method: 'GET',
+        url,
+        headers: { cookie: `accessToken=${validToken()}` },
+      })
+
+      expect(response.statusCode).toBe(200)
+      expect(response.json()).toEqual({ user: { id: 'user-1', username: 'alice' } })
+    })
+
+    it.each(['/api/backups', `/api/backups/not-an-id/download`, `/api/backups/${backupId}/downloads`])(
+      'does not accept the cookie on %s',
+      async (url) => {
+        const server = await buildBackupServer()
+
+        const response = await server.inject({
+          method: 'GET',
+          url,
+          headers: { cookie: `accessToken=${validToken()}` },
+        })
+
+        expect(response.statusCode).toBe(401)
+      },
+    )
+  })
 })

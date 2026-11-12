@@ -2,19 +2,24 @@ import { buildServer } from './buildServer'
 import { PORT } from './config/env'
 import { connectMongo, disconnectMongo } from './db/mongoClient'
 import { ensureIndexes as ensureApiKeyIndexes } from './repositories/apiKey/apiKeyRepository'
+import { ensureIndexes as ensureBackupIndexes } from './repositories/backup/backupRepository'
 import { ensureIndexes as ensureUserIndexes } from './repositories/user/userRepository'
 import { apiKeysRoutes } from './routes/apiKeys/apiKeys.routes'
 import { appApiRoutes } from './routes/app-api/appApi.routes'
+import { backupsRoutes } from './routes/backups/backups.routes'
 import { mcpRoutes } from './routes/mcp/mcp.routes'
 import { appsRoutes } from './routes/apps/apps.routes'
 import { authRoutes } from './routes/auth/auth.routes'
 import { resourcesRoutes } from './routes/resources/resources.routes'
 import { startAppBackends } from './services/appBackends/appBackendManager'
+import { recoverBackups } from './services/backups/backupService'
 
 async function start(): Promise<void> {
   await connectMongo()
   await ensureUserIndexes()
   await ensureApiKeyIndexes()
+  await recoverBackups()
+  await ensureBackupIndexes()
 
   await startAppBackends()
 
@@ -22,6 +27,7 @@ async function start(): Promise<void> {
   await server.register(authRoutes, { prefix: '/api' })
   await server.register(appsRoutes, { prefix: '/api' })
   await server.register(apiKeysRoutes, { prefix: '/api' })
+  await server.register(backupsRoutes, { prefix: '/api' })
   await server.register(resourcesRoutes, { prefix: '/resources' })
   await server.register(appApiRoutes, { prefix: '/app-api' })
   await server.register(mcpRoutes, { prefix: '/mcp' })

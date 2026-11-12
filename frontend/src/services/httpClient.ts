@@ -17,6 +17,10 @@ export class HttpClientError extends Error {
   }
 }
 
+export function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`
+}
+
 let inFlightRenewal: Promise<boolean> | null = null
 
 export function renewSession(): Promise<boolean> {

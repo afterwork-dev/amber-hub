@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { h } from 'vue'
 import { mount } from '@vue/test-utils'
-import { createRouter, createMemoryHistory } from 'vue-router'
+import { createRouter, createMemoryHistory, RouterView } from 'vue-router'
 import { VApp } from 'vuetify/components'
 import SettingsDrawer from '../SettingsDrawer.vue'
 import { vuetify } from '../../../plugins/vuetify'
@@ -11,20 +11,34 @@ function createTestRouter() {
     history: createMemoryHistory(),
     routes: [
       { path: '/', name: 'dashboard', component: { template: '<div>Dashboard</div>' } },
-      { path: '/settings', name: 'settings-api-key', component: { template: '<div />' } },
+      {
+        path: '/settings',
+        component: RouterView,
+        children: [
+          { path: '', name: 'settings-api-key', component: { template: '<div />' } },
+          { path: 'backups', name: 'settings-backups', component: { template: '<div />' } },
+        ],
+      },
     ],
   })
 }
 
-async function mountSettingsDrawer() {
+async function mountSettingsDrawer(path = '/settings') {
   const router = createTestRouter()
-  router.push('/settings')
+  router.push(path)
   await router.isReady()
 
   return mount(VApp, {
     slots: { default: () => h(SettingsDrawer) },
     global: { plugins: [vuetify, router] },
   })
+}
+
+function activeTitles(wrapper: Awaited<ReturnType<typeof mountSettingsDrawer>>) {
+  return wrapper
+    .findAllComponents({ name: 'VListItem' })
+    .filter((item) => item.classes().includes('v-list-item--active'))
+    .map((item) => item.text())
 }
 
 describe('SettingsDrawer', () => {
@@ -34,19 +48,26 @@ describe('SettingsDrawer', () => {
     expect(wrapper.findComponent({ name: 'VNavigationDrawer' }).props('permanent')).toBe(true)
   })
 
-  it('lists exactly one entry, "API Key", linking to the settings page', async () => {
+  it('lists "API Key" and "Backups", linking to their settings pages', async () => {
     const wrapper = await mountSettingsDrawer()
 
     const items = wrapper.findAllComponents({ name: 'VListItem' })
-    expect(items).toHaveLength(1)
-    expect(items[0]?.text()).toBe('API Key')
-    expect(items[0]?.find('a').attributes('href')).toBe('/settings')
+    expect(items.map((item) => item.text())).toEqual(['API Key', 'Backups'])
+    expect(items.map((item) => item.find('a').attributes('href'))).toEqual([
+      '/settings',
+      '/settings/backups',
+    ])
   })
 
-  it('shows "API Key" as selected while the settings page is displayed', async () => {
-    const wrapper = await mountSettingsDrawer()
+  it('shows only "API Key" as selected on the API key page', async () => {
+    const wrapper = await mountSettingsDrawer('/settings')
 
-    const item = wrapper.findComponent({ name: 'VListItem' })
-    expect(item.classes()).toContain('v-list-item--active')
+    expect(activeTitles(wrapper)).toEqual(['API Key'])
+  })
+
+  it('shows only "Backups" as selected on the backups page', async () => {
+    const wrapper = await mountSettingsDrawer('/settings/backups')
+
+    expect(activeTitles(wrapper)).toEqual(['Backups'])
   })
 })

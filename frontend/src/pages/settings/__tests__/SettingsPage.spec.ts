@@ -15,7 +15,10 @@ function createTestRouter() {
       {
         path: '/settings',
         component: SettingsPage,
-        children: [{ path: '', name: 'settings-api-key', component: ApiKeyPage }],
+        children: [
+          { path: '', name: 'settings-api-key', component: ApiKeyPage },
+          { path: 'backups', name: 'settings-backups', component: { template: '<div />' } },
+        ],
       },
     ],
   })

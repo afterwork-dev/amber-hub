@@ -52,6 +52,24 @@ describe('buildServer', () => {
     expect(response.headers['access-control-allow-credentials']).toBe('true')
   })
 
+  it('allows cross-origin DELETE requests in the preflight response', async () => {
+    const server = await buildServer()
+    server.delete('/probe', async () => ({ ok: true }))
+
+    const response = await server.inject({
+      method: 'OPTIONS',
+      url: '/probe',
+      headers: {
+        origin: 'http://localhost:5173',
+        'access-control-request-method': 'DELETE',
+        'access-control-request-headers': 'authorization',
+      },
+    })
+
+    expect(response.statusCode).toBe(204)
+    expect(response.headers['access-control-allow-methods']).toContain('DELETE')
+  })
+
   it('does not reflect back an origin other than the configured frontend origin', async () => {
     const server = await buildServer()
     server.get('/probe', async () => ({ ok: true }))

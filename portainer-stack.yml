@@ -12,6 +12,9 @@ services:
       MONGODB_URI: mongodb://mongo:27017/amber-hub
       JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET to a long random value}
       FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:9290}
+      BACKUP_STORAGE_PATH: /data/backups
+    volumes:
+      - backups_data:/data/backups
     depends_on:
       - mongo
 
@@ -23,3 +26,4 @@ services:
 
 volumes:
   mongo_data:
+  backups_data:

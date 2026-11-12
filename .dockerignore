@@ -23,3 +23,4 @@ test-results
 **/test-results
 *.tsbuildinfo
 .git
+backend/backups-data

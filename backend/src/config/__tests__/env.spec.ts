@@ -85,6 +85,31 @@ describe('getJwtRefreshExpiresIn', () => {
   })
 })
 
+describe('getBackupStoragePath', () => {
+  afterEach(() => {
+    delete process.env.BACKUP_STORAGE_PATH
+    vi.resetModules()
+  })
+
+  it('defaults to backups-data inside the backend package', async () => {
+    delete process.env.BACKUP_STORAGE_PATH
+    vi.resetModules()
+
+    const { getBackupStoragePath } = await import('../env')
+
+    expect(getBackupStoragePath()).toBe(resolve(BACKEND_ROOT, 'backups-data'))
+  })
+
+  it('uses the BACKUP_STORAGE_PATH environment variable when set', async () => {
+    process.env.BACKUP_STORAGE_PATH = '/data/backups'
+    vi.resetModules()
+
+    const { getBackupStoragePath } = await import('../env')
+
+    expect(getBackupStoragePath()).toBe('/data/backups')
+  })
+})
+
 describe('getAppsStoragePath', () => {
   it('is a fixed location inside the backend package, with no environment override', async () => {
     process.env.APPS_STORAGE_PATH = '/should/be/ignored'

@@ -42,6 +42,10 @@ export function getAppsStoragePath(): string {
   return resolve(BACKEND_ROOT, 'apps-data')
 }
 
+export function getBackupStoragePath(): string {
+  return process.env.BACKUP_STORAGE_PATH || resolve(BACKEND_ROOT, 'backups-data')
+}
+
 export function getFrontendOrigin(): string {
   return process.env.FRONTEND_ORIGIN || 'http://localhost:5173'
 }
