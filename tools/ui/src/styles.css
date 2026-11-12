@@ -744,7 +744,70 @@
   }
 }
 
+.amber-dialog {
+  width: min(480px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100% - 32px);
+  padding: 0;
+  border: none;
+  border-radius: var(--amber-radius-xl);
+  background: var(--amber-raised);
+  box-shadow: var(--amber-elevation-3);
+  color: inherit;
+  overflow: auto;
+  animation: amber-dialog-in var(--amber-duration-normal) var(--amber-easing);
+}
+
+.amber-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.amber-dialog__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--amber-space-4);
+  padding: var(--amber-space-8);
+}
+
+.amber-dialog__title {
+  margin: 0;
+  color: var(--amber-text-primary);
+  font-size: var(--amber-type-subheading-size);
+  font-weight: var(--amber-type-subheading-weight);
+  line-height: var(--amber-type-subheading-line-height);
+}
+
+.amber-dialog__body {
+  color: var(--amber-text-secondary);
+  font-size: var(--amber-type-body-size);
+  font-weight: var(--amber-type-body-weight);
+  line-height: var(--amber-type-body-line-height);
+}
+
+.amber-dialog__actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: var(--amber-space-2);
+}
+
+@keyframes amber-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .amber-dialog {
+    animation: none;
+  }
+
   .amber-spinner {
     animation-duration: 1.6s;
   }

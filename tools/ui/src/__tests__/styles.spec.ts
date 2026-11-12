@@ -12,7 +12,9 @@ describe('styles.css', () => {
   })
 
   it('has no raw colour values', () => {
-    expect(withoutComments).not.toMatch(/#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/)
+    // The dialog scrim is the one literal colour (docs/amberui.md §4.8 has no token for it).
+    const withoutScrim = withoutComments.replace(/\.amber-dialog::backdrop\s*\{[^}]*\}/, '')
+    expect(withoutScrim).not.toMatch(/#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/)
   })
 
   it('has the button, icon button and spinner rules and a reduced-motion block', () => {

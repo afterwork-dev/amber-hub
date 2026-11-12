@@ -14,6 +14,7 @@ const components: Record<string, () => Promise<RouteComponent>> = {
   '/components/text-input': () => import('./pages/TextInputPage.vue'),
   '/components/selection': () => import('./pages/SelectionControlsPage.vue'),
   '/components/card-feedback': () => import('./pages/CardFeedbackPage.vue'),
+  '/components/dialog': () => import('./pages/DialogPage.vue'),
 }
 
 const router = createRouter({
